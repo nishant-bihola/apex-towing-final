@@ -57,7 +57,7 @@ export default function RequestPage() {
   };
 
   return (
-    <div className="pt-24 min-h-screen bg-light-gray flex items-center justify-center p-4">
+    <div className="pt-20 md:pt-24 min-h-screen bg-light-gray flex items-center justify-center p-4">
       <div className="max-w-[1230px] w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row p-4 md:p-10 gap-10 md:gap-20">
         {/* Left Image */}
         <div className="md:w-1/2 rounded-xl overflow-hidden">
@@ -91,7 +91,7 @@ export default function RequestPage() {
             </motion.div>
           ) : (
             <>
-              <h1 className="text-5xl md:text-6xl font-medium text-black mb-12 tracking-tight leading-tight">
+              <h1 className="text-4xl md:text-6xl font-medium text-black mb-8 md:mb-12 tracking-tight leading-tight">
                 Request towing assistance
               </h1>
 

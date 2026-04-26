@@ -30,7 +30,7 @@ const Hero = () => {
         <div className="max-w-[660px] mb-12">
           <motion.h1 
             {...fadeIn}
-            className="text-5xl md:text-6xl lg:text-[70px] leading-[1.1] font-medium mb-6 text-black"
+            className="text-4xl md:text-6xl lg:text-[70px] leading-[1.1] font-medium mb-6 text-black"
           >
             Stranded? We’ll get you moving fast.
           </motion.h1>
@@ -267,7 +267,7 @@ const Services = () => {
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <p className="pl-[88px] pr-8 pb-4 text-paragraph-gray text-lg leading-relaxed">
+                  <p className="pl-4 md:pl-[88px] pr-8 pb-4 text-paragraph-gray text-lg leading-relaxed">
                     {service.description}
                   </p>
                 </motion.div>
@@ -323,7 +323,7 @@ const Services = () => {
 const BannerCta = () => {
   return (
     <section className="px-4">
-      <div className="max-w-[1230px] mx-auto relative rounded-10px overflow-hidden h-[600px]">
+      <div className="max-w-[1230px] mx-auto relative rounded-10px overflow-hidden min-h-[500px] md:h-[600px]">
         <img loading="lazy" 
           src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2bc621a21dd91bdf22ac8_pexels-jonathan-reynaga-861774-17429097%20(1).jpg" 
           alt="Tow Truck at Night" 
@@ -331,7 +331,7 @@ const BannerCta = () => {
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-        <div className="absolute inset-0 p-8 md:p-14 flex flex-col md:flex-row justify-between items-end gap-10">
+        <div className="absolute inset-0 p-6 md:p-14 flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
           <div className="max-w-[600px]">
             <span className="text-primary font-bold text-lg mb-4 block uppercase tracking-wider">Roadside assistance</span>
             <h2 className="text-4xl md:text-6xl font-bold !text-white leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
@@ -551,7 +551,7 @@ const PrimaryCTA = () => {
               </div>
             </div>
           </div>
-          <div className="lg:w-1/2 h-[560px] rounded-10px overflow-hidden">
+          <div className="lg:w-1/2 h-[300px] md:h-[560px] rounded-10px overflow-hidden">
             <img loading="lazy" 
               src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2e18af8d1c0c328adac3a_pexels-jakewymoore-12330350%20(1).webp" 
               alt="Professional Towing" 
