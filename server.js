@@ -62,8 +62,9 @@ app.post('/api/booking', async (req, res) => {
         {
           name: data.name,
           phone: data.phone,
+          email: data.email || null,
           service_type: data.serviceType,
-          message: `${data.message || ''} (Email: ${data.email})`,
+          message: data.message || '',
           source: data.source,
           status: 'New'
         }
