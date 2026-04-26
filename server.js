@@ -67,27 +67,32 @@ app.post('/api/booking', async (req, res) => {
       // 3. Confirmation to Client
       if (data.email) {
         console.log(`Sending confirmation to client: ${data.email}`);
-        await resend.emails.send({
-          from: 'Apex Towing <onboarding@resend.dev>',
-          to: [data.email],
-          subject: 'We received your towing request!',
-          html: `
-            <h3>Hello ${data.name},</h3>
-            <p>Thank you for reaching out to Apex Towing. We have received your request for <strong>${data.serviceType}</strong>.</p>
-            <p>One of our team members will contact you shortly at <strong>${data.phone}</strong>.</p>
-            <br>
-            <p><strong>Request Details:</strong></p>
-            <ul>
-              <li>Service: ${data.serviceType}</li>
-              <li>Message: ${data.message || 'N/A'}</li>
-            </ul>
-            <br>
-            <p>If this is an extreme emergency, please call us directly.</p>
-            <p>Best regards,<br>The Apex Towing Team</p>
-          `
-        });
-        results.clientEmail = true;
-        console.log('Client email sent successfully');
+        try {
+          await resend.emails.send({
+            from: 'Apex Towing <onboarding@resend.dev>',
+            to: [data.email],
+            subject: 'We received your towing request!',
+            html: `
+              <h3>Hello ${data.name},</h3>
+              <p>Thank you for reaching out to Apex Towing. We have received your request for <strong>${data.serviceType}</strong>.</p>
+              <p>One of our team members will contact you shortly at <strong>${data.phone}</strong>.</p>
+              <br>
+              <p><strong>Request Details:</strong></p>
+              <ul>
+                <li>Service: ${data.serviceType}</li>
+                <li>Message: ${data.message || 'N/A'}</li>
+              </ul>
+              <br>
+              <p>If this is an extreme emergency, please call us directly.</p>
+              <p>Best regards,<br>The Apex Towing Team</p>
+            `
+          });
+          results.clientEmail = true;
+          console.log('Client email sent successfully');
+        } catch (clientEmailError) {
+          console.error('Failed to send client email (Resend free tier limits):', clientEmailError.message);
+          results.clientEmailError = clientEmailError.message;
+        }
       }
     }
 
