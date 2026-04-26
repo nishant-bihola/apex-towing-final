@@ -1,6 +1,6 @@
 import express from 'express';
 import { createClient } from '@supabase/supabase-js';
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
@@ -15,10 +15,18 @@ const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Resend Configuration
-const RESEND_API_KEY = process.env.VITE_RESEND_API_KEY;
-const resend = RESEND_API_KEY ? new Resend(RESEND_API_KEY) : null;
+// Nodemailer Configuration
+const EMAIL_USER = process.env.EMAIL_USER || "nishant15bihola@gmail.com";
+const EMAIL_APP_PASSWORD = process.env.EMAIL_APP_PASSWORD;
 const OWNER_EMAIL = "nishant15bihola@gmail.com";
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: EMAIL_USER,
+    pass: EMAIL_APP_PASSWORD
+  }
+});
 
 app.post('/api/booking', async (req, res) => {
   const data = req.body;
@@ -30,8 +38,8 @@ app.post('/api/booking', async (req, res) => {
     return res.status(500).json({ success: false, error: 'Server configuration error: Database keys are missing.' });
   }
 
-  if (!RESEND_API_KEY) {
-    console.warn('WARNING: RESEND_API_KEY is missing! Emails will not be sent.');
+  if (!EMAIL_APP_PASSWORD) {
+    console.warn('WARNING: EMAIL_APP_PASSWORD is missing! Emails will not be sent.');
   }
 
   try {
@@ -55,59 +63,57 @@ app.post('/api/booking', async (req, res) => {
     results.supabase = true;
 
     // 2. Notification to Owner
-    if (resend) {
-      const ownerResponse = await resend.emails.send({
-        from: 'Apex Towing Leads <onboarding@resend.dev>',
-        to: [OWNER_EMAIL],
-        subject: `New Lead: ${data.serviceType} from ${data.name}`,
-        html: `
-          <h3>New Service Request</h3>
-          <p><strong>Name:</strong> ${data.name}</p>
-          <p><strong>Email:</strong> ${data.email}</p>
-          <p><strong>Phone:</strong> ${data.phone}</p>
-          <p><strong>Service:</strong> ${data.serviceType}</p>
-          <p><strong>Message:</strong> ${data.message || 'N/A'}</p>
-          <p><strong>Source:</strong> ${data.source}</p>
-          <p><em>Check your Supabase dashboard for details.</em></p>
-        `
-      });
-
-      if (ownerResponse.error) {
-        console.error('Failed to send owner email:', ownerResponse.error);
-        results.ownerEmailError = ownerResponse.error.message;
-      } else {
+    if (EMAIL_APP_PASSWORD) {
+      try {
+        await transporter.sendMail({
+          from: `"Apex Towing System" <${EMAIL_USER}>`,
+          to: OWNER_EMAIL,
+          subject: `New Lead: ${data.serviceType} from ${data.name}`,
+          html: `
+            <h3>New Service Request</h3>
+            <p><strong>Name:</strong> ${data.name}</p>
+            <p><strong>Email:</strong> ${data.email}</p>
+            <p><strong>Phone:</strong> ${data.phone}</p>
+            <p><strong>Service:</strong> ${data.serviceType}</p>
+            <p><strong>Message:</strong> ${data.message || 'N/A'}</p>
+            <p><strong>Source:</strong> ${data.source}</p>
+            <p><em>Check your Supabase dashboard for details.</em></p>
+          `
+        });
         results.ownerEmail = true;
+      } catch (err) {
+        console.error('Failed to send owner email:', err);
+        results.ownerEmailError = err.message;
       }
 
       // 3. Confirmation to Client
       if (data.email) {
         console.log(`Sending confirmation to client: ${data.email}`);
-        const clientResponse = await resend.emails.send({
-          from: 'Apex Towing <onboarding@resend.dev>',
-          to: [data.email],
-          subject: 'We received your towing request!',
-          html: `
-            <h3>Hello ${data.name},</h3>
-            <p>Thank you for reaching out to Apex Towing. We have received your request for <strong>${data.serviceType}</strong>.</p>
-            <p>One of our team members will contact you shortly at <strong>${data.phone}</strong>.</p>
-            <br>
-            <p><strong>Request Details:</strong></p>
-            <ul>
-              <li>Service: ${data.serviceType}</li>
-              <li>Message: ${data.message || 'N/A'}</li>
-            </ul>
-            <br>
-            <p>If this is an extreme emergency, please call us directly.</p>
-            <p>Best regards,<br>The Apex Towing Team</p>
-          `
-        });
-
-        if (clientResponse.error) {
-          console.error('Failed to send client email (Resend free tier limits):', clientResponse.error.message);
-          results.clientEmailError = clientResponse.error.message;
-        } else {
+        try {
+          await transporter.sendMail({
+            from: `"Apex Towing" <${EMAIL_USER}>`,
+            to: data.email,
+            subject: 'We received your towing request!',
+            html: `
+              <h3>Hello ${data.name},</h3>
+              <p>Thank you for reaching out to Apex Towing. We have received your request for <strong>${data.serviceType}</strong>.</p>
+              <p>One of our team members will contact you shortly at <strong>${data.phone}</strong>.</p>
+              <br>
+              <p><strong>Request Details:</strong></p>
+              <ul>
+                <li>Service: ${data.serviceType}</li>
+                <li>Message: ${data.message || 'N/A'}</li>
+              </ul>
+              <br>
+              <p>If this is an extreme emergency, please call us directly.</p>
+              <p>Best regards,<br>The Apex Towing Team</p>
+            `
+          });
           results.clientEmail = true;
           console.log('Client email sent successfully');
+        } catch (err) {
+          console.error('Failed to send client email:', err.message);
+          results.clientEmailError = err.message;
         }
       }
     }
