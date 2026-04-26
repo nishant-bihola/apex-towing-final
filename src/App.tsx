@@ -154,45 +154,45 @@ const Navbar = () => {
 
 const Footer = () => {
   return (
-    <footer className="pt-20 pb-10 bg-white">
+    <footer className="pt-16 md:pt-20 pb-10 bg-white">
       <div className="max-w-[1230px] mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 border-t border-b border-soft-gray py-16">
-          <div className="flex flex-col md:flex-row gap-16 lg:gap-20">
-            <div className="space-y-6">
-              <div className="text-black font-medium uppercase text-sm tracking-widest">Sitemap</div>
-              <div className="flex flex-col space-y-3">
-                <Link to="/" className="hover:text-black font-medium">Home</Link>
-                <Link to="/about" className="hover:text-black font-medium">About us</Link>
-                <Link to="/services" className="hover:text-black font-medium">Services</Link>
-                <Link to="/testimonials" className="hover:text-black font-medium">Testimonials</Link>
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-16 border-t border-b border-soft-gray py-10 md:py-16">
+          <div className="grid grid-cols-2 md:flex md:flex-row gap-8 md:gap-16 lg:gap-20">
+            <div className="space-y-4 md:space-y-6">
+              <div className="text-black font-medium uppercase text-xs md:text-sm tracking-widest">Sitemap</div>
+              <div className="flex flex-col space-y-2 md:space-y-3">
+                <Link to="/" className="hover:text-black font-medium text-sm md:text-base">Home</Link>
+                <Link to="/about" className="hover:text-black font-medium text-sm md:text-base">About us</Link>
+                <Link to="/services" className="hover:text-black font-medium text-sm md:text-base">Services</Link>
+                <Link to="/testimonials" className="hover:text-black font-medium text-sm md:text-base">Testimonials</Link>
               </div>
             </div>
-            <div className="space-y-6">
-              <div className="text-black font-medium uppercase text-sm tracking-widest">Our Services</div>
-              <div className="flex flex-col space-y-3">
+            <div className="space-y-4 md:space-y-6">
+              <div className="text-black font-medium uppercase text-xs md:text-sm tracking-widest">Our Services</div>
+              <div className="flex flex-col space-y-2 md:space-y-3">
                 {services.slice(0, 4).map(s => (
                   <Link key={s.id} to={`/service/${s.id}`} className="hover:text-black font-medium text-paragraph-gray text-xs">{s.title}</Link>
                 ))}
               </div>
             </div>
-            <div className="space-y-6 md:pl-10">
-              <div className="text-black font-medium uppercase text-sm tracking-widest">Socials</div>
-              <div className="flex flex-col space-y-3">
-                <a href="#" className="flex items-center gap-2 hover:text-black font-medium">
-                  <Instagram size={18} /> Instagram
+            <div className="space-y-4 md:space-y-6">
+              <div className="text-black font-medium uppercase text-xs md:text-sm tracking-widest">Socials</div>
+              <div className="flex flex-col space-y-2 md:space-y-3">
+                <a href="#" className="flex items-center gap-2 hover:text-black font-medium text-sm">
+                  <Instagram size={16} /> Instagram
                 </a>
-                <a href="#" className="flex items-center gap-2 hover:text-black font-medium">
-                  <Youtube size={18} /> Youtube
+                <a href="#" className="flex items-center gap-2 hover:text-black font-medium text-sm">
+                  <Youtube size={16} /> Youtube
                 </a>
-                <a href="#" className="flex items-center gap-2 hover:text-black font-medium">
-                  <Facebook size={18} /> Facebook
+                <a href="#" className="flex items-center gap-2 hover:text-black font-medium text-sm">
+                  <Facebook size={16} /> Facebook
                 </a>
               </div>
             </div>
           </div>
 
           <div className="max-w-[460px]">
-            <h4 className="text-2xl font-medium text-black mb-8 leading-tight">
+            <h4 className="text-xl md:text-2xl font-medium text-black mb-6 md:mb-8 leading-tight">
               Subscribe to be in touch with latest news.
             </h4>
             <form className="relative" onSubmit={(e) => {
@@ -208,19 +208,19 @@ const Footer = () => {
                 type="email" 
                 required
                 placeholder="Email address" 
-                className="w-full h-[72px] rounded-60px border border-soft-gray px-8 focus:border-paragraph-gray focus:outline-none focus:text-black transition-all bg-white"
+                className="w-full h-[64px] md:h-[72px] rounded-60px border border-soft-gray px-6 md:px-8 focus:border-paragraph-gray focus:outline-none focus:text-black transition-all bg-white text-sm md:text-base"
               />
               <button 
                 type="submit" 
-                className="absolute right-3 top-3 bottom-3 w-12 h-12 bg-primary rounded-full flex items-center justify-center hover:bg-black hover:text-primary transition-all duration-500 group"
+                className="absolute right-3 top-3 bottom-3 w-10 h-10 md:w-12 md:h-12 bg-primary rounded-full flex items-center justify-center hover:bg-black hover:text-primary transition-all duration-500 group"
               >
-                <ArrowRight size={20} className="group-hover:-rotate-45 transition-transform" />
+                <ArrowRight size={18} className="group-hover:-rotate-45 transition-transform" />
               </button>
             </form>
           </div>
         </div>
 
-        <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-paragraph-gray">
+        <div className="pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 text-xs md:text-sm text-paragraph-gray">
           <div className="flex gap-2 items-center">
             <span>Copyright © 2026 Nishant Bihola. All Rights Reserved.</span>
           </div>

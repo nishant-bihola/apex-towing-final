@@ -23,20 +23,20 @@ const AboutPage = () => {
   return (
     <div className="pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-light-gray overflow-hidden">
+      <section className="py-12 md:py-32 bg-light-gray overflow-hidden">
         <div className="max-w-[1230px] mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="max-w-3xl"
             >
-              <span className="text-black font-semibold text-lg mb-6 block underline decoration-primary decoration-4 underline-offset-8">Our Story</span>
-              <h1 className="text-5xl md:text-7xl font-medium text-black leading-[1.1] mb-8 tracking-tighter">
+              <span className="text-black font-semibold text-base md:text-lg mb-4 md:mb-6 block underline decoration-primary decoration-4 underline-offset-8">Our Story</span>
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-medium text-black leading-[1.1] mb-6 md:mb-8 tracking-tighter">
                 A decade of reliable roadside care.
               </h1>
-              <p className="text-xl text-paragraph-gray leading-relaxed max-w-2xl">
+              <p className="text-base md:text-xl text-paragraph-gray leading-relaxed max-w-2xl">
                 From a single truck to a regional fleet, Apex Towing & Recovery was built on a simple promise: help people when they need it most, without delay.
               </p>
             </motion.div>
@@ -50,7 +50,7 @@ const AboutPage = () => {
               <img loading="lazy" 
                 src="/about-hero.png" 
                 alt="Apex Towing Truck" 
-                className="relative rounded-2xl shadow-2xl w-full h-[400px] object-cover border-4 border-white"
+                className="relative rounded-2xl shadow-2xl w-full h-[260px] sm:h-[400px] object-cover border-4 border-white"
               />
             </motion.div>
           </div>
@@ -58,21 +58,21 @@ const AboutPage = () => {
       </section>
 
       {/* Mission & Values */}
-      <section className="py-20 md:py-32">
+      <section className="py-12 md:py-32">
         <div className="max-w-[1230px] mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-10 md:gap-20 items-center">
             <div className="relative group">
               <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-2xl group-hover:bg-primary/30 transition-all duration-500"></div>
               <img loading="lazy" 
                 src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2bc621a21dd91bdf22ac8_pexels-jonathan-reynaga-861774-17429097%20(1).jpg" 
                 alt="Our Mission" 
-                className="relative rounded-10px shadow-2xl w-full h-[500px] object-cover"
+                className="relative rounded-10px shadow-2xl w-full h-[280px] sm:h-[400px] md:h-[500px] object-cover"
                 referrerPolicy="no-referrer"
               />
             </div>
             <div>
-              <h2 className="text-4xl md:text-5xl font-medium text-black mb-10 tracking-tight">Our Mission</h2>
-              <p className="text-lg text-paragraph-gray mb-12 leading-relaxed">
+              <h2 className="text-3xl md:text-5xl font-medium text-black mb-6 md:mb-10 tracking-tight">Our Mission</h2>
+              <p className="text-base md:text-lg text-paragraph-gray mb-8 md:mb-12 leading-relaxed">
                 Our mission is to provide the fastest, safest, and most professional towing and recovery services in the industry. We believe that a roadside emergency shouldn't ruin your day, and our team works tirelessly to ensure your peace of mind.
               </p>
               
@@ -180,19 +180,19 @@ const AboutPage = () => {
       </section>
 
       {/* Achievements */}
-      <section className="py-20 md:py-32 bg-primary">
+      <section className="py-12 md:py-32 bg-primary">
         <div className="max-w-[1230px] mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-12 text-black">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-black">
             {[
-              { icon: <Award className="w-10 h-10" />, label: "Industry Awards", value: "15+" },
-              { icon: <Users className="w-10 h-10" />, label: "Happy Clients", value: "50k+" },
-              { icon: <Truck className="w-10 h-10" />, label: "Miles Driven", value: "2M+" },
-              { icon: <MapPin className="w-10 h-10" />, label: "Cities Covered", value: "45+" }
+              { icon: <Award className="w-8 h-8 md:w-10 md:h-10" />, label: "Industry Awards", value: "15+" },
+              { icon: <Users className="w-8 h-8 md:w-10 md:h-10" />, label: "Happy Clients", value: "50k+" },
+              { icon: <Truck className="w-8 h-8 md:w-10 md:h-10" />, label: "Miles Driven", value: "2M+" },
+              { icon: <MapPin className="w-8 h-8 md:w-10 md:h-10" />, label: "Cities Covered", value: "45+" }
             ].map((item, i) => (
-              <div key={i} className="text-center md:text-left">
-                <div className="mb-4 flex justify-center md:justify-start">{item.icon}</div>
-                <div className="text-4xl font-bold mb-2">{item.value}</div>
-                <div className="font-medium text-black/70">{item.label}</div>
+              <div key={i} className="text-center">
+                <div className="mb-3 flex justify-center">{item.icon}</div>
+                <div className="text-3xl md:text-4xl font-bold mb-1">{item.value}</div>
+                <div className="font-medium text-black/70 text-sm md:text-base">{item.label}</div>
               </div>
             ))}
           </div>

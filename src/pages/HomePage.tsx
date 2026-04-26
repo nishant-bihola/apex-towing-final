@@ -36,22 +36,22 @@ const Hero = () => {
           <motion.p 
             {...fadeIn}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-paragraph-gray mb-8"
+            className="text-base md:text-xl text-paragraph-gray mb-8"
           >
             Whether you're dealing with a breakdown, a flat tire, or an unexpected roadside emergency, our team is available 24/7 to get you back on track.
           </motion.p>
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.4 }}
-            className="flex flex-wrap gap-4 items-center"
+            className="flex flex-wrap gap-3 md:gap-4 items-center"
           >
-            <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-lg hover:shadow-xl">
-              <span className="font-medium">Request a tow now</span>
+            <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-6 md:pl-8 pr-2 py-2 rounded-full flex items-center gap-6 md:gap-10 transition-all duration-500 group shadow-lg hover:shadow-xl">
+              <span className="font-medium text-sm md:text-base">Request a tow now</span>
               <div className="bg-primary group-hover:bg-black p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
                 <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
               </div>
             </Link>
-            <a href="tel:8259779460" className="bg-white border border-[#0000001a] text-black px-6 py-4 md:px-10 md:py-5 rounded-full font-medium hover:border-[#00000080] transition-all">
+            <a href="tel:8259779460" className="bg-white border border-[#0000001a] text-black px-5 py-3 md:px-10 md:py-5 rounded-full font-medium hover:border-[#00000080] transition-all text-sm md:text-base">
               (825) 977-9460
             </a>
           </motion.div>
@@ -66,26 +66,29 @@ const Hero = () => {
           <img loading="lazy" 
             src="/home-hero.png" 
             alt="Towing Service Truck" 
-            className="w-full h-[400px] md:h-[600px] object-cover hover:scale-105 transition-transform duration-1000"
+            className="w-full h-[260px] sm:h-[400px] md:h-[600px] object-cover hover:scale-105 transition-transform duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 bg-primary p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-nowrap lg:justify-between items-center gap-4 lg:gap-2">
-            {[
-              { id: 1, text: "Request a Tow" },
-              { id: 2, text: "Get a Fast Response" },
-              { id: 3, text: "Safe Vehicle Transport" },
-              { id: 4, text: "Back on the Road" }
-            ].map((step, idx, arr) => (
-              <div key={step.id} className="flex items-center justify-between lg:justify-start gap-3 w-full lg:w-auto border-b border-black/10 lg:border-none pb-4 lg:pb-0 last:border-none">
-                <div className="flex items-center gap-3">
-                  <span className="bg-black text-white px-4 py-1.5 rounded-60px text-[12px] font-bold shrink-0">Step {step.id}</span>
-                  <span className="font-semibold text-black text-sm md:text-base leading-tight">{step.text}</span>
+          {/* Step bar */}
+          <div className="absolute bottom-0 left-0 right-0 bg-primary">
+            <div className="flex flex-col sm:grid sm:grid-cols-2 lg:flex lg:flex-row lg:justify-between p-3 md:p-4 gap-0">
+              {[
+                { id: 1, text: "Request a Tow" },
+                { id: 2, text: "Get a Fast Response" },
+                { id: 3, text: "Safe Vehicle Transport" },
+                { id: 4, text: "Back on the Road" }
+              ].map((step, idx, arr) => (
+                <div key={step.id} className="flex items-center justify-between gap-2 py-2 px-2 border-b border-black/10 sm:border-b lg:border-none last:border-none lg:w-auto">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="bg-black text-white px-2.5 py-1 rounded-60px text-[10px] md:text-[12px] font-bold shrink-0">Step {step.id}</span>
+                    <span className="font-semibold text-black text-xs md:text-sm leading-tight truncate">{step.text}</span>
+                  </div>
+                  {idx < arr.length - 1 && (
+                    <ArrowRight size={14} className="text-black/40 shrink-0" />
+                  )}
                 </div>
-                {idx < arr.length - 1 && (
-                  <ArrowRight size={18} className="text-black/30 lg:block" />
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
@@ -189,7 +192,7 @@ const About = () => {
 const Stats = () => {
   return (
     <div className="max-w-[1230px] mx-auto px-4 mb-20 md:mb-32">
-      <div className="bg-light-gray rounded-10px p-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div className="bg-light-gray rounded-10px p-6 md:p-10 grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
         {[
           { number: "30 Min", text: "Average response time to get you back on the road." },
           { number: "10K+", text: "Vehicles successfully towed and assisted." },
@@ -202,8 +205,8 @@ const Stats = () => {
             transition={{ delay: i * 0.1 }}
             className="flex flex-col"
           >
-            <span className="text-4xl md:text-[46px] font-medium text-black mb-2 leading-none">{stat.number}</span>
-            <p className="text-dark-gray text-base leading-[1.4] max-w-[185px]">{stat.text}</p>
+            <span className="text-3xl md:text-[46px] font-medium text-black mb-2 leading-none">{stat.number}</span>
+            <p className="text-dark-gray text-sm md:text-base leading-[1.4] max-w-[185px]">{stat.text}</p>
           </motion.div>
         ))}
       </div>
@@ -317,7 +320,7 @@ const Services = () => {
 const BannerCta = () => {
   return (
     <section className="px-4">
-      <div className="max-w-[1230px] mx-auto relative rounded-10px overflow-hidden h-[600px]">
+      <div className="max-w-[1230px] mx-auto relative rounded-10px overflow-hidden h-[420px] md:h-[600px]">
         <img loading="lazy" 
           src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2bc621a21dd91bdf22ac8_pexels-jonathan-reynaga-861774-17429097%20(1).jpg" 
           alt="Tow Truck at Night" 
@@ -325,15 +328,15 @@ const BannerCta = () => {
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-        <div className="absolute inset-0 p-8 md:p-14 flex flex-col md:flex-row justify-between items-end gap-10">
+        <div className="absolute inset-0 p-6 md:p-14 flex flex-col justify-end md:flex-row md:justify-between md:items-end gap-6">
           <div className="max-w-[600px]">
-            <span className="text-primary font-bold text-lg mb-4 block uppercase tracking-wider">Roadside assistance</span>
-            <h2 className="text-4xl md:text-6xl font-bold !text-white leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+            <span className="text-primary font-bold text-sm md:text-lg mb-3 block uppercase tracking-wider">Roadside assistance</span>
+            <h2 className="text-3xl md:text-6xl font-bold !text-white leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
               Fast & reliable help anytime, anywhere.
             </h2>
           </div>
-          <Link to="/request" className="bg-white hover:bg-black text-black hover:text-primary pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shrink-0 shadow-lg hover:shadow-xl">
-            <span className="font-medium">Request a tow now</span>
+          <Link to="/request" className="bg-white hover:bg-black text-black hover:text-primary pl-6 md:pl-8 pr-2 py-2 rounded-full flex items-center gap-6 md:gap-10 transition-all duration-500 group shrink-0 shadow-lg hover:shadow-xl w-fit">
+            <span className="font-medium text-sm md:text-base">Request a tow now</span>
             <div className="bg-primary group-hover:bg-white p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
               <ArrowRight size={18} className="text-black transition-colors duration-500" />
             </div>
@@ -347,8 +350,8 @@ const BannerCta = () => {
 const TeamSection = () => {
   return (
     <section className="py-20 md:py-32 bg-white">
-      <div className="max-w-[1230px] mx-auto px-4 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-        <div className="lg:w-1/2 w-full rounded-10px overflow-hidden max-h-[480px]">
+      <div className="max-w-[1230px] mx-auto px-4 flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
+        <div className="lg:w-1/2 w-full rounded-10px overflow-hidden h-[280px] sm:h-[380px] lg:max-h-[480px]">
           <img loading="lazy" 
             src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67e66774f3bed40f642d5774_pexels-19x14-8478232%20(1).webp" 
             alt="Our Mechanic Team" 
@@ -357,14 +360,14 @@ const TeamSection = () => {
           />
         </div>
         <div className="lg:w-1/2 pl-0 lg:pl-10">
-          <span className="text-black font-semibold text-lg mb-6 block">Experts you can trust</span>
-          <h2 className="text-4xl md:text-5xl font-medium text-black leading-tight mb-6">
+          <span className="text-black font-semibold text-base md:text-lg mb-4 block">Experts you can trust</span>
+          <h2 className="text-3xl md:text-5xl font-medium text-black leading-tight mb-4 md:mb-6">
             Our team is the backbone of our service.
           </h2>
-          <p className="text-lg text-paragraph-gray mb-10 max-w-[85%]">
+          <p className="text-base md:text-lg text-paragraph-gray mb-8 md:mb-10">
             Our certified professionals are dedicated to providing fast, reliable, and safe solutions whenever you need help.
           </p>
-          <Link to="/about#team" className="bg-black text-white px-8 py-5 rounded-60px font-medium hover:bg-transparent hover:text-black border border-black transition-all">
+          <Link to="/about#team" className="bg-black text-white px-8 py-4 md:py-5 rounded-60px font-medium hover:bg-transparent hover:text-black border border-black transition-all inline-block">
             Meet our team
           </Link>
         </div>
@@ -517,35 +520,35 @@ const PrimaryCTA = () => {
     <section className="py-10 px-4">
       <div className="max-w-[1230px] mx-auto bg-primary rounded-10px p-2 md:p-3">
         <div className="flex flex-col lg:flex-row bg-primary">
-          <div className="lg:w-1/2 p-10 lg:p-16">
-            <div className="mb-10">
-              <h2 className="text-4xl md:text-[60px] font-medium leading-[1.1] text-black tracking-tighter">
+          <div className="lg:w-1/2 p-6 md:p-10 lg:p-16">
+            <div className="mb-6 md:mb-10">
+              <h2 className="text-3xl md:text-[60px] font-medium leading-[1.1] text-black tracking-tighter">
                 <span className="text-dark-gray block">Need help?</span>
                 Apex Towing is just a call away!
               </h2>
             </div>
-            <div className="flex flex-col items-start gap-10 md:gap-12">
-              <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-2xl hover:shadow-none">
-                <span className="font-medium">Request a tow now</span>
+            <div className="flex flex-col items-start gap-6 md:gap-12">
+              <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-6 md:pl-8 pr-2 py-2 rounded-full flex items-center gap-6 md:gap-10 transition-all duration-500 group shadow-2xl hover:shadow-none">
+                <span className="font-medium text-sm md:text-base">Request a tow now</span>
                 <div className="bg-primary group-hover:bg-black p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
                   <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
                 </div>
               </Link>
-              <div className="flex flex-col gap-5">
+              <div className="flex flex-col gap-3 md:gap-5">
                 {[
                   "24/7 Emergency Service",
                   "Fast Response Time",
                   "Affordable & Transparent Pricing"
                 ].map(item => (
-                  <div key={item} className="flex items-center gap-3 text-black font-medium text-lg">
-                    <Check size={20} className="text-black" strokeWidth={3} />
+                  <div key={item} className="flex items-center gap-3 text-black font-medium text-sm md:text-lg">
+                    <Check size={18} className="text-black shrink-0" strokeWidth={3} />
                     {item}
                   </div>
                 ))}
               </div>
             </div>
           </div>
-          <div className="lg:w-1/2 h-[560px] rounded-10px overflow-hidden">
+          <div className="lg:w-1/2 h-[300px] md:h-[420px] lg:h-[560px] rounded-10px overflow-hidden">
             <img loading="lazy" 
               src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2e18af8d1c0c328adac3a_pexels-jakewymoore-12330350%20(1).webp" 
               alt="Professional Towing" 
