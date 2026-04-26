@@ -204,26 +204,23 @@ const AboutPage = () => {
       <section className="py-20 md:py-32">
         <div className="max-w-[1230px] mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-medium text-black mb-10">Ready to get back on the road?</h2>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-             <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-2xl hover:shadow-none shrink-0">
+            <div className="flex flex-col gap-5 items-center justify-center">
+              <a 
+                href="tel:8259779460" 
+                className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-lg hover:shadow-xl w-full max-w-[340px]"
+              >
+                <span className="font-medium uppercase tracking-widest text-[10px]">Call now: 825-977-9460</span>
+                <div className="bg-primary group-hover:bg-black p-3 rounded-full transition-all duration-500">
+                  <Phone size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
+                </div>
+              </a>
+             <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-lg hover:shadow-xl w-full max-w-[340px]">
                 <span className="font-medium uppercase tracking-widest text-[10px]">Request Service</span>
                 <div className="bg-primary group-hover:bg-black p-3 rounded-full group-hover:rotate-[-45deg] transition-all duration-500">
                   <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
                 </div>
              </Link>
-              <a 
-                href="tel:8259779460" 
-                className="bg-black text-white hover:bg-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-6 transition-all duration-500 group shadow-lg hover:shadow-xl shrink-0"
-              >
-                <div className="flex flex-col items-start leading-none text-left">
-                  <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity text-white/40 group-hover:text-black/40">Call now 24/7</span>
-                  <span className="text-xl font-bold">825-977-9460</span>
-                </div>
-                <div className="bg-primary group-hover:bg-black p-3.5 rounded-full transition-all duration-500">
-                  <Phone size={18} className="text-black group-hover:text-primary transition-colors duration-500 fill-current" />
-                </div>
-              </a>
-          </div>
+            </div>
         </div>
       </section>
     </div>

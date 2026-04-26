@@ -41,19 +41,22 @@ const RoadsideAssistanceEdmonton = () => {
             <motion.div 
               {...fadeIn}
               transition={{ delay: 0.4 }}
-              className="flex flex-wrap gap-4 items-center"
+              className="flex flex-col gap-5 w-full max-w-[340px]"
             >
-              <a href="tel:8259779460" className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-2xl">
-                <div className="flex flex-col items-start leading-none">
-                  <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Quick Dispatch</span>
-                  <span className="text-xl font-bold">825-977-9460</span>
-                </div>
-                <div className="bg-black group-hover:bg-primary p-3.5 rounded-full transition-all duration-500">
-                  <Phone size={18} className="text-primary group-hover:text-black transition-colors duration-500 fill-current" />
+              <a 
+                href="tel:8259779460" 
+                className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-lg hover:shadow-xl w-full"
+              >
+                <span className="font-bold text-[10px] tracking-widest uppercase">Call Now: 825-977-9460</span>
+                <div className="bg-black group-hover:bg-primary p-3 rounded-full transition-all duration-500">
+                  <Phone size={18} className="text-primary group-hover:text-black transition-colors duration-500" />
                 </div>
               </a>
-              <Link to="/request" className="text-white hover:text-primary transition-colors font-bold">
-                Request Help Online
+              <Link to="/request" className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-xl w-full">
+                <span className="font-medium uppercase tracking-widest text-[10px]">Request help now</span>
+                <div className="bg-black group-hover:bg-primary p-3 rounded-full group-hover:rotate-[-45deg] transition-all duration-500">
+                  <ArrowRight size={18} className="text-primary group-hover:text-black transition-colors duration-500" />
+                </div>
               </Link>
             </motion.div>
           </div>

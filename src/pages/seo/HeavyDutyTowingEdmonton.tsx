@@ -41,19 +41,22 @@ const HeavyDutyTowingEdmonton = () => {
             <motion.div 
               {...fadeIn}
               transition={{ delay: 0.4 }}
-              className="flex flex-wrap gap-4 items-center"
+              className="flex flex-col gap-5 w-full max-w-[340px]"
             >
-              <a href="tel:8259779460" className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-[0_0_50px_rgba(255,215,0,0.2)]">
-                <div className="flex flex-col items-start leading-none">
-                  <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Emergency Line</span>
-                  <span className="text-xl font-bold">825-977-9460</span>
-                </div>
-                <div className="bg-black group-hover:bg-primary p-3.5 rounded-full transition-all duration-500">
-                  <Phone size={18} className="text-primary group-hover:text-black transition-colors duration-500 fill-current" />
+              <a 
+                href="tel:8259779460" 
+                className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-lg hover:shadow-xl w-full"
+              >
+                <span className="font-bold text-[10px] tracking-widest uppercase">Call now: 825-977-9460</span>
+                <div className="bg-black group-hover:bg-primary p-3 rounded-full transition-all duration-500">
+                  <Phone size={18} className="text-primary group-hover:text-black transition-colors duration-500" />
                 </div>
               </a>
-              <Link to="/request" className="text-white/60 hover:text-white transition-colors font-bold flex items-center gap-2 uppercase tracking-widest text-xs">
-                Book a service <ArrowRight size={14} />
+              <Link to="/request" className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-xl w-full">
+                <span className="font-medium uppercase tracking-widest text-[10px]">Request a tow now</span>
+                <div className="bg-black group-hover:bg-primary p-3 rounded-full group-hover:rotate-[-45deg] transition-all duration-500">
+                  <ArrowRight size={18} className="text-primary group-hover:text-black transition-colors duration-500" />
+                </div>
               </Link>
             </motion.div>
           </div>
@@ -120,10 +123,13 @@ const HeavyDutyTowingEdmonton = () => {
                   <Check size={16} className="text-primary" strokeWidth={4} /> WreckMaster Certified Operators
                 </li>
               </ul>
-              <a href="tel:8259779460" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-2xl w-full justify-between">
-                <div className="flex flex-col items-start leading-none">
+              <a 
+                href="tel:8259779460" 
+                className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-2xl w-full"
+              >
+                <div className="flex flex-col items-start leading-none text-left">
                   <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Heavy Duty Dispatch</span>
-                  <span className="text-xl font-bold">825-977-9460</span>
+                  <span className="text-xl font-bold text-white group-hover:text-black">825-977-9460</span>
                 </div>
                 <div className="bg-primary group-hover:bg-black p-3.5 rounded-full transition-all duration-500">
                   <Phone size={18} className="text-black group-hover:text-primary transition-colors duration-500 fill-current" />
@@ -145,15 +151,26 @@ const HeavyDutyTowingEdmonton = () => {
           <p className="text-black/60 text-xl mb-12 max-w-2xl mx-auto">
             Don't let equipment failure halt your operations. We're on standby right now.
           </p>
-          <a href="tel:8259779460" className="inline-flex items-center gap-10 bg-black hover:bg-white text-white hover:text-black pl-8 pr-2 py-2 rounded-full font-bold transition-all duration-500 group shadow-2xl">
-            <div className="flex flex-col items-start leading-none text-left">
-              <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Instant Dispatch</span>
-              <span className="text-2xl font-black">825-977-9460</span>
-            </div>
-            <div className="bg-primary group-hover:bg-black p-4 rounded-full transition-all duration-500">
-              <Phone size={24} className="text-black group-hover:text-primary transition-colors duration-500 fill-current" />
-            </div>
-          </a>
+          <div className="flex flex-col gap-5 justify-center items-center">
+            <a 
+              href="tel:8259779460" 
+              className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-lg hover:shadow-xl w-full max-w-[340px]"
+            >
+              <div className="flex flex-col items-start leading-none text-left">
+                <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Instant Dispatch</span>
+                <span className="text-xl font-bold">825-977-9460</span>
+              </div>
+              <div className="bg-primary group-hover:bg-black p-3.5 rounded-full transition-all duration-500">
+                <Phone size={18} className="text-black group-hover:text-primary transition-colors duration-500 fill-current" />
+              </div>
+            </a>
+            <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full font-medium shadow-xl hover:shadow-2xl transition-all duration-500 flex items-center justify-between group w-full max-w-[340px]">
+              <span className="font-medium uppercase tracking-widest text-[10px]">Request a tow now</span>
+              <div className="bg-primary group-hover:bg-black p-3 rounded-full group-hover:rotate-[-45deg] transition-all duration-500">
+                <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
     </div>
