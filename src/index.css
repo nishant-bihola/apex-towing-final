@@ -294,19 +294,32 @@ p {
 
 /* ElevenLabs Widget Customization */
 elevenlabs-convai {
+  /* Brand colors */
   --el-accent: #ffcc00;
   --el-accent-hover: #e6b800;
   --el-accent-primary: #000000;
-  --el-base: #ffffff;
-  --el-base-primary: #000000;
+  
+  /* Dark premium theme */
+  --el-base: #1a1a1a;
+  --el-base-primary: #ffffff;
+  
+  /* Rounded sleek corners */
   --el-button-radius: 60px;
   --el-sheet-radius: 24px;
   --el-input-radius: 60px;
   
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: 30px;
+  right: 30px;
   z-index: 100;
   font-family: "Plus Jakarta Sans", sans-serif;
-  filter: drop-shadow(0 10px 15px -3px rgb(0 0 0 / 0.1)) drop-shadow(0 4px 6px -4px rgb(0 0 0 / 0.1));
+  
+  /* Elegant glow effect */
+  filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.4)) drop-shadow(0 4px 6px -4px rgba(0, 0, 0, 0.5));
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+elevenlabs-convai:hover {
+  filter: drop-shadow(0 0 25px rgba(255, 204, 0, 0.6)) drop-shadow(0 6px 10px -4px rgba(0, 0, 0, 0.5));
+  transform: translateY(-2px) scale(1.02);
 }
