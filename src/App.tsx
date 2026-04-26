@@ -111,10 +111,15 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           <a
             href="tel:8259779460"
-            className="hidden md:flex items-center gap-3 bg-white border border-soft-gray px-6 py-3 rounded-full shadow-sm hover:shadow-md transition-all font-bold text-black text-sm"
+            className="hidden md:flex items-center gap-3 bg-black text-white px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group hover:bg-primary hover:text-black"
           >
-            <Phone size={18} fill="currentColor" />
-            <span>825-977-9460</span>
+            <div className="flex flex-col items-start leading-none">
+              <span className="text-[8px] font-bold opacity-60 uppercase tracking-widest mb-0.5 group-hover:text-black/60">24/7 CALL</span>
+              <span className="text-[13px] font-black">825-977-9460</span>
+            </div>
+            <div className="bg-primary p-2 rounded-full group-hover:bg-black transition-colors duration-300">
+              <Phone size={14} className="text-black group-hover:text-primary transition-colors" fill="currentColor" />
+            </div>
           </a>
           <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -144,10 +149,15 @@ const Navbar = () => {
           <Link to="/#find-us" className="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>FIND US</Link>
           <a
             href="tel:8259779460"
-            className="flex items-center justify-center gap-2 bg-white border border-soft-gray px-8 py-3 rounded-full font-medium"
+            className="flex items-center justify-between bg-black text-white px-8 py-5 rounded-full font-bold shadow-2xl group hover:bg-primary hover:text-black transition-all duration-300"
           >
-            <Phone size={16} fill="currentColor" />
-            <span>825-977-9460</span>
+            <div className="flex flex-col items-start leading-none">
+              <span className="text-[10px] font-bold opacity-60 uppercase tracking-widest mb-1 group-hover:text-black/60">Emergency Dispatch</span>
+              <span className="text-xl font-black tracking-tight">825-977-9460</span>
+            </div>
+            <div className="bg-primary p-3 rounded-full group-hover:bg-black transition-colors">
+              <Phone size={20} className="text-black group-hover:text-primary transition-colors" fill="currentColor" />
+            </div>
           </a>
         </div>
       )}
@@ -182,8 +192,12 @@ const Footer = () => {
               </div>
             </div>
             <div className="space-y-6 md:pl-10">
-              <div className="text-black font-medium uppercase text-sm tracking-widest">Socials</div>
+              <div className="text-black font-medium uppercase text-sm tracking-widest">Contact & Social</div>
               <div className="flex flex-col space-y-3">
+                <a href="tel:8259779460" className="flex items-center gap-2 hover:text-black font-bold text-lg">
+                  <Phone size={18} className="text-primary fill-current" /> 825-977-9460
+                </a>
+                <div className="h-px w-10 bg-soft-gray my-2"></div>
                 <a href="#" className="flex items-center gap-2 hover:text-black font-medium">
                   <Instagram size={18} /> Instagram
                 </a>

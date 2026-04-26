@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { Check, ArrowRight, Truck, Timer, ShieldCheck, MapPin } from "lucide-react";
+import { Check, ArrowRight, Truck, Timer, ShieldCheck, MapPin, Phone } from "lucide-react";
 import { services } from "../data/services";
 
 const fadeIn = {
@@ -121,13 +121,25 @@ const ServiceDetailPage = () => {
                 ))}
               </ul>
 
-              <div className="mt-12 pt-10 border-t border-white/10 relative z-10">
-                <Link to="/request" className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full inline-flex items-center gap-10 transition-all duration-500 group shadow-xl">
-                  <span className="font-bold text-sm tracking-widest uppercase">Book this service</span>
+              <div className="mt-12 pt-10 border-t border-white/10 relative z-10 flex flex-col sm:flex-row gap-6">
+                <Link to="/request" className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full inline-flex items-center gap-10 transition-all duration-500 group shadow-xl shrink-0">
+                  <span className="font-bold text-[10px] tracking-widest uppercase">Book this service</span>
                   <div className="bg-black group-hover:bg-primary p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
                     <ArrowRight size={18} className="text-primary group-hover:text-black transition-colors" />
                   </div>
                 </Link>
+                <a 
+                  href="tel:8259779460" 
+                  className="bg-white/10 border border-white/20 text-white hover:bg-primary hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-6 transition-all duration-500 group shadow-lg hover:shadow-xl shrink-0"
+                >
+                  <div className="flex flex-col items-start leading-none text-left">
+                    <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Emergency Call</span>
+                    <span className="text-lg font-bold">825-977-9460</span>
+                  </div>
+                  <div className="bg-primary group-hover:bg-black p-3 rounded-full transition-all duration-500">
+                    <Phone size={16} className="text-black group-hover:text-primary transition-colors duration-500 fill-current" />
+                  </div>
+                </a>
               </div>
             </motion.div>
           </div>

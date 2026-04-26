@@ -43,9 +43,14 @@ const HeavyDutyTowingEdmonton = () => {
               transition={{ delay: 0.4 }}
               className="flex flex-wrap gap-4 items-center"
             >
-              <a href="tel:8259779460" className="bg-primary hover:bg-white text-black px-12 py-5 rounded-full font-bold flex items-center gap-4 transition-all duration-300 shadow-[0_0_50px_rgba(255,215,0,0.2)]">
-                Direct Line: 825-977-9460
-                <Phone size={18} fill="currentColor" />
+              <a href="tel:8259779460" className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-[0_0_50px_rgba(255,215,0,0.2)]">
+                <div className="flex flex-col items-start leading-none">
+                  <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Emergency Line</span>
+                  <span className="text-xl font-bold">825-977-9460</span>
+                </div>
+                <div className="bg-black group-hover:bg-primary p-3.5 rounded-full transition-all duration-500">
+                  <Phone size={18} className="text-primary group-hover:text-black transition-colors duration-500 fill-current" />
+                </div>
               </a>
               <Link to="/request" className="text-white/60 hover:text-white transition-colors font-bold flex items-center gap-2 uppercase tracking-widest text-xs">
                 Book a service <ArrowRight size={14} />
@@ -115,8 +120,14 @@ const HeavyDutyTowingEdmonton = () => {
                   <Check size={16} className="text-primary" strokeWidth={4} /> WreckMaster Certified Operators
                 </li>
               </ul>
-              <a href="tel:8259779460" className="block w-full bg-black text-white text-center py-5 rounded-xl font-bold hover:bg-primary hover:text-black transition-all">
-                Emergency Dispatch: 825-977-9460
+              <a href="tel:8259779460" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-2xl w-full justify-between">
+                <div className="flex flex-col items-start leading-none">
+                  <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Heavy Duty Dispatch</span>
+                  <span className="text-xl font-bold">825-977-9460</span>
+                </div>
+                <div className="bg-primary group-hover:bg-black p-3.5 rounded-full transition-all duration-500">
+                  <Phone size={18} className="text-black group-hover:text-primary transition-colors duration-500 fill-current" />
+                </div>
               </a>
             </div>
           </div>
@@ -134,8 +145,14 @@ const HeavyDutyTowingEdmonton = () => {
           <p className="text-black/60 text-xl mb-12 max-w-2xl mx-auto">
             Don't let equipment failure halt your operations. We're on standby right now.
           </p>
-          <a href="tel:8259779460" className="inline-block bg-black text-white px-16 py-6 rounded-full font-bold text-lg hover:scale-105 transition-transform shadow-2xl">
-            Request Immediate Dispatch
+          <a href="tel:8259779460" className="inline-flex items-center gap-10 bg-black hover:bg-white text-white hover:text-black pl-8 pr-2 py-2 rounded-full font-bold transition-all duration-500 group shadow-2xl">
+            <div className="flex flex-col items-start leading-none text-left">
+              <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Instant Dispatch</span>
+              <span className="text-2xl font-black">825-977-9460</span>
+            </div>
+            <div className="bg-primary group-hover:bg-black p-4 rounded-full transition-all duration-500">
+              <Phone size={24} className="text-black group-hover:text-primary transition-colors duration-500 fill-current" />
+            </div>
           </a>
         </div>
       </section>

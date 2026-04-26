@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Star, Check, ArrowRight } from "lucide-react";
+import { Star, Check, ArrowRight, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const fadeIn = {
@@ -123,13 +123,25 @@ const TestimonialsPage = () => {
               <span className="text-dark-gray block">Need help?</span>
               AutoTowing is just a call away!
             </h2>
-            <div className="flex justify-center">
-              <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full font-medium shadow-xl hover:shadow-2xl transition-all duration-500 flex items-center gap-10 group">
-                <span className="font-medium">Request a tow now</span>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+              <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full font-medium shadow-xl hover:shadow-2xl transition-all duration-500 flex items-center gap-10 group shrink-0">
+                <span className="font-medium uppercase tracking-widest text-[10px]">Request a tow now</span>
                 <div className="bg-primary group-hover:bg-black p-3 rounded-full group-hover:rotate-[-45deg] transition-all duration-500">
                   <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
                 </div>
               </Link>
+              <a 
+                href="tel:8259779460" 
+                className="bg-black text-white hover:bg-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-6 transition-all duration-500 group shadow-lg hover:shadow-xl shrink-0"
+              >
+                <div className="flex flex-col items-start leading-none text-left">
+                  <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Call now 24/7</span>
+                  <span className="text-xl font-bold">825-977-9460</span>
+                </div>
+                <div className="bg-primary group-hover:bg-black p-3.5 rounded-full transition-all duration-500">
+                  <Phone size={18} className="text-black group-hover:text-primary transition-colors duration-500 fill-current" />
+                </div>
+              </a>
             </div>
           </div>
         </div>

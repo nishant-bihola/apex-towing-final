@@ -10,7 +10,8 @@ import {
   Tractor, 
   AlertTriangle,
   MapPin,
-  ExternalLink
+  ExternalLink,
+  Phone
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -52,9 +53,17 @@ const Hero = () => {
                 <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
               </div>
             </Link>
-            <a href="tel:8259779460" className="bg-white border-2 border-black text-black px-10 py-5 rounded-full font-bold hover:bg-primary transition-all flex flex-col items-center">
-              <span className="text-[10px] uppercase tracking-widest opacity-60">Call Now 24/7</span>
-              825-977-9460
+            <a 
+              href="tel:8259779460" 
+              className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-6 transition-all duration-500 group shadow-lg hover:shadow-xl shrink-0"
+            >
+              <div className="flex flex-col items-start leading-none">
+                <span className="text-[9px] font-bold text-white/40 group-hover:text-black/40 uppercase tracking-widest mb-1">Call now 24/7</span>
+                <span className="text-xl font-bold">825-977-9460</span>
+              </div>
+              <div className="bg-primary group-hover:bg-black p-3.5 rounded-full transition-all duration-500">
+                <Phone size={18} className="text-black group-hover:text-primary transition-colors duration-500 fill-current" />
+              </div>
             </a>
           </motion.div>
         </div>
@@ -330,21 +339,35 @@ const BannerCta = () => {
           className="w-full h-full object-cover scale-110"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-        <div className="absolute inset-0 p-6 md:p-14 flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>        <div className="absolute inset-0 p-6 md:p-14 flex flex-col md:flex-row justify-between items-start md:items-end gap-10">
           <div className="max-w-[600px]">
-            <span className="text-primary font-bold text-lg mb-4 block uppercase tracking-wider">Roadside assistance</span>
-            <h2 className="text-4xl md:text-6xl font-bold !text-white leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+            <span className="text-primary font-bold text-sm md:text-lg mb-4 block uppercase tracking-wider">Roadside assistance</span>
+            <h2 className="text-3xl md:text-6xl font-bold !text-white leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
               Fast & reliable help anytime, anywhere.
             </h2>
           </div>
-          <Link to="/request" className="bg-white hover:bg-black text-black hover:text-primary pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shrink-0 shadow-lg hover:shadow-xl">
-            <span className="font-medium">Request a tow now</span>
-            <div className="bg-primary group-hover:bg-white p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
-              <ArrowRight size={18} className="text-black transition-colors duration-500" />
-            </div>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-6 items-center">
+            <Link to="/request" className="bg-white hover:bg-black text-black hover:text-primary pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shrink-0 shadow-lg hover:shadow-xl">
+              <span className="font-medium uppercase tracking-widest text-[10px]">Request a tow now</span>
+              <div className="bg-primary group-hover:bg-white p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
+                <ArrowRight size={18} className="text-black transition-colors duration-500" />
+              </div>
+            </Link>
+            <a 
+              href="tel:8259779460" 
+              className="bg-white hover:bg-black text-black hover:text-primary pl-8 pr-2 py-2 rounded-full flex items-center gap-6 transition-all duration-500 group shadow-lg hover:shadow-xl shrink-0"
+            >
+              <div className="flex flex-col items-start leading-none text-left">
+                <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Call now 24/7</span>
+                <span className="text-xl font-bold">825-977-9460</span>
+              </div>
+              <div className="bg-primary group-hover:bg-white p-3.5 rounded-full transition-all duration-500">
+                <Phone size={18} className="text-black transition-colors duration-500 fill-current" />
+              </div>
+            </a>
+          </div>
         </div>
+
       </div>
     </section>
   );
@@ -531,12 +554,26 @@ const PrimaryCTA = () => {
               </h2>
             </div>
             <div className="flex flex-col items-start gap-10 md:gap-12">
-              <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-2xl hover:shadow-none">
-                <span className="font-medium">Request a tow now</span>
-                <div className="bg-primary group-hover:bg-black p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
-                  <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
-                </div>
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-6 items-center">
+                <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-2xl hover:shadow-none shrink-0">
+                  <span className="font-medium uppercase tracking-widest text-[10px]">Request a tow now</span>
+                  <div className="bg-primary group-hover:bg-black p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
+                    <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
+                  </div>
+                </Link>
+                <a 
+                  href="tel:8259779460" 
+                  className="bg-black text-white hover:bg-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-6 transition-all duration-500 group shadow-lg hover:shadow-xl shrink-0"
+                >
+                  <div className="flex flex-col items-start leading-none text-left">
+                    <span className="text-[9px] font-bold opacity-40 group-hover:opacity-100 uppercase tracking-widest mb-1 transition-opacity">Call now 24/7</span>
+                    <span className="text-xl font-bold">825-977-9460</span>
+                  </div>
+                  <div className="bg-primary group-hover:bg-black p-3.5 rounded-full transition-all duration-500">
+                    <Phone size={18} className="text-black group-hover:text-primary transition-colors duration-500 fill-current" />
+                  </div>
+                </a>
+              </div>
               <div className="flex flex-col gap-5">
                 {[
                   "24/7 Emergency Service",

@@ -149,10 +149,10 @@ export default function RequestPage() {
                 <div className="pt-4">
                   <button 
                     disabled={isSubmitting}
-                    className="bg-black hover:bg-primary text-white hover:text-black pl-10 pr-2 py-2 rounded-full flex items-center gap-14 transition-all duration-500 group w-fit shadow-xl hover:shadow-2xl disabled:opacity-50"
+                    className="bg-black hover:bg-primary text-white hover:text-black pl-10 pr-2 py-2 rounded-full flex items-center gap-14 transition-all duration-500 group w-full sm:w-fit shadow-xl hover:shadow-2xl disabled:opacity-50"
                   >
-                    <span className="font-medium text-lg">
-                      {isSubmitting ? "Sending..." : "Send message"}
+                    <span className="font-medium text-lg italic">
+                      {isSubmitting ? "Sending..." : "Request a Tow Now"}
                     </span>
                     <div className="bg-primary group-hover:bg-black p-4 rounded-full group-hover:rotate-[-45deg] transition-all duration-500">
                       {isSubmitting ? (
