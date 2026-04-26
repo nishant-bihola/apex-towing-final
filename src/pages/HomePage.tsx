@@ -15,6 +15,7 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import GoogleReviews from "../components/GoogleReviews";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -576,6 +577,7 @@ export default function HomePage() {
       <Services />
       <BannerCta />
       <TeamSection />
+      <GoogleReviews />
       <FAQ />
       <FindUs />
       <PrimaryCTA />
