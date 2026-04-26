@@ -33,6 +33,7 @@ const fadeIn = {
 };
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Analytics } from '@vercel/analytics/react';
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import RequestPage from "./pages/RequestPage";
@@ -362,6 +363,7 @@ export default function App() {
         </Routes>
         <Footer />
       </div>
+      <Analytics />
     </Router>
   );
 }
