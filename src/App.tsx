@@ -39,6 +39,7 @@ import RequestPage from "./pages/RequestPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import ServicesPage from "./pages/ServicesPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
+import AdminPage from "./pages/AdminPage";
 import ScrollToTop from "./components/ScrollToTop";
 import { services } from "./data/services";
 import { subscribeEmail } from "./api/subscribeApi";
@@ -295,71 +296,77 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      
-      {/* Premium Preloader */}
-      {loading && (
-        <motion.div 
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center pointer-events-none"
-        >
-          <div className="relative flex flex-col items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-8"
-            >
-              APEX TOWING<span className="text-primary">.</span>
-            </motion.div>
-            
-            <div className="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
+      <Routes>
+        {/* ── Admin — completely standalone, no Navbar/Footer/Preloader ── */}
+        <Route path="/admin" element={<AdminPage />} />
+
+        {/* ── Public site ── */}
+        <Route path="*" element={
+          <>
+            {/* Premium Preloader */}
+            {loading && (
               <motion.div 
-                initial={{ width: "0%" }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 2, ease: "easeInOut" }}
-                className="absolute top-0 left-0 h-full bg-primary"
-              />
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center pointer-events-none"
+              >
+                <div className="relative flex flex-col items-center">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-8"
+                  >
+                    APEX TOWING<span className="text-primary">.</span>
+                  </motion.div>
+                  
+                  <div className="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
+                    <motion.div 
+                      initial={{ width: "0%" }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 2, ease: "easeInOut" }}
+                      className="absolute top-0 left-0 h-full bg-primary"
+                    />
+                  </div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="mt-6 text-[10px] font-bold tracking-[0.3em] text-white/40 uppercase"
+                  >
+                    Elevating Towing Services
+                  </motion.div>
+                </div>
+                
+                {/* Decorative elements */}
+                <motion.div 
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.1, 0.2, 0.1]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]"
+                />
+              </motion.div>
+            )}
+
+            <div className={`font-sans antialiased bg-white min-h-screen relative transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+              <Navbar />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/request" element={<RequestPage />} />
+                <Route path="/testimonials" element={<TestimonialsPage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/service/:serviceId" element={<ServiceDetailPage />} />
+              </Routes>
+              <Footer />
             </div>
-            
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-6 text-[10px] font-bold tracking-[0.3em] text-white/40 uppercase"
-            >
-              Elevating Towing Services
-            </motion.div>
-          </div>
-          
-          {/* Decorative elements */}
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.1, 0.2, 0.1]
-            }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]"
-          />
-        </motion.div>
-      )}
-
-      <div className={`font-sans antialiased bg-white min-h-screen relative transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
-        <Navbar />
-        
-
-
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/request" element={<RequestPage />} />
-          <Route path="/testimonials" element={<TestimonialsPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/service/:serviceId" element={<ServiceDetailPage />} />
-        </Routes>
-        <Footer />
-      </div>
+          </>
+        } />
+      </Routes>
     </Router>
   );
 }
