@@ -47,14 +47,14 @@ export default function RequestPage() {
   };
 
   return (
-    <div className="pt-24 min-h-screen bg-light-gray flex items-center justify-center p-4">
-      <div className="max-w-[1230px] w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row p-4 md:p-10 gap-10 md:gap-20">
+    <div className="pt-20 min-h-screen bg-light-gray flex items-center justify-center p-3 sm:p-4">
+      <div className="max-w-[1230px] w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row p-3 sm:p-4 md:p-10 gap-6 md:gap-20">
         {/* Left Image */}
         <div className="md:w-1/2 rounded-xl overflow-hidden">
           <img loading="lazy" 
             src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2e18af8d1c0c328adac3a_pexels-jakewymoore-12330350%20(1).webp" 
             alt="Car on trailer" 
-            className="w-full h-full object-cover min-h-[400px] md:min-h-[600px]"
+            className="w-full h-full object-cover min-h-[180px] sm:min-h-[280px] md:min-h-[600px]"
             referrerPolicy="no-referrer"
           />
         </div>
@@ -81,7 +81,7 @@ export default function RequestPage() {
             </motion.div>
           ) : (
             <>
-              <h1 className="text-5xl md:text-6xl font-medium text-black mb-12 tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-medium text-black mb-6 md:mb-12 tracking-tight leading-tight">
                 Request towing assistance
               </h1>
 
@@ -94,7 +94,7 @@ export default function RequestPage() {
                     onChange={handleChange}
                     placeholder="Full name" 
                     required
-                    className="w-full px-6 py-5 rounded-full border border-soft-gray focus:border-black focus:outline-none text-lg transition-colors placeholder:text-paragraph-gray/60"
+                    className="w-full px-4 sm:px-6 py-4 rounded-full border border-soft-gray focus:border-black focus:outline-none text-base transition-colors placeholder:text-paragraph-gray/60"
                   />
                 </div>
                 <div className="relative">
@@ -105,7 +105,7 @@ export default function RequestPage() {
                     onChange={handleChange}
                     placeholder="Email address" 
                     required
-                    className="w-full px-6 py-5 rounded-full border border-soft-gray focus:border-black focus:outline-none text-lg transition-colors placeholder:text-paragraph-gray/60"
+                    className="w-full px-4 sm:px-6 py-4 rounded-full border border-soft-gray focus:border-black focus:outline-none text-base transition-colors placeholder:text-paragraph-gray/60"
                   />
                 </div>
                 <div className="relative">
@@ -116,7 +116,7 @@ export default function RequestPage() {
                     onChange={handleChange}
                     placeholder="Phone number" 
                     required
-                    className="w-full px-6 py-5 rounded-full border border-soft-gray focus:border-black focus:outline-none text-lg transition-colors placeholder:text-paragraph-gray/60"
+                    className="w-full px-4 sm:px-6 py-4 rounded-full border border-soft-gray focus:border-black focus:outline-none text-base transition-colors placeholder:text-paragraph-gray/60"
                   />
                 </div>
                 <div className="relative">
@@ -125,7 +125,7 @@ export default function RequestPage() {
                     value={formData.service}
                     onChange={handleChange}
                     required
-                    className="w-full px-6 py-5 rounded-full border border-soft-gray focus:border-black focus:outline-none text-lg transition-colors appearance-none bg-white text-black"
+                    className="w-full px-4 sm:px-6 py-4 rounded-full border border-soft-gray focus:border-black focus:outline-none text-base transition-colors appearance-none bg-white text-black"
                   >
                     <option value="" disabled>Select a service</option>
                     {services.map(service => (
@@ -146,16 +146,16 @@ export default function RequestPage() {
                     onChange={handleChange}
                     placeholder="Message / Details (Optional)" 
                     rows={5}
-                    className="w-full px-6 py-5 rounded-3xl border border-soft-gray focus:border-black focus:outline-none text-lg transition-colors placeholder:text-paragraph-gray/60 resize-none"
+                    className="w-full px-4 sm:px-6 py-4 rounded-3xl border border-soft-gray focus:border-black focus:outline-none text-base transition-colors placeholder:text-paragraph-gray/60 resize-none"
                   ></textarea>
                 </div>
 
                 <div className="pt-4">
                   <button 
                     disabled={isSubmitting}
-                    className="bg-black hover:bg-primary text-white hover:text-black pl-10 pr-2 py-2 rounded-full flex items-center gap-14 transition-all duration-500 group w-fit shadow-xl hover:shadow-2xl disabled:opacity-50"
+                    className="bg-black hover:bg-primary text-white hover:text-black pl-6 sm:pl-10 pr-2 py-2 rounded-full flex items-center gap-6 sm:gap-14 transition-all duration-500 group w-fit shadow-xl hover:shadow-2xl disabled:opacity-50"
                   >
-                    <span className="font-medium text-lg">
+                    <span className="font-medium text-sm sm:text-lg">
                       {isSubmitting ? "Sending..." : "Send message"}
                     </span>
                     <div className="bg-primary group-hover:bg-black p-4 rounded-full group-hover:rotate-[-45deg] transition-all duration-500">

@@ -24,34 +24,34 @@ const fadeIn = {
 
 const Hero = () => {
   return (
-    <section className="pt-32 pb-0 bg-white overflow-hidden">
-      <div className="max-w-[1230px] mx-auto px-4">
-        <div className="max-w-[660px] mb-12">
+    <section className="pt-24 md:pt-32 pb-0 bg-white overflow-hidden">
+      <div className="max-w-[1230px] mx-auto px-3 sm:px-4">
+        <div className="max-w-[660px] mb-8 md:mb-12">
           <motion.h1 
             {...fadeIn}
-            className="text-4xl md:text-6xl lg:text-[70px] leading-[1.1] font-medium mb-6 text-black"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-[70px] leading-[1.1] font-medium mb-4 md:mb-6 text-black"
           >
             Fast, reliable, roadside assistance
           </motion.h1>
           <motion.p 
             {...fadeIn}
             transition={{ delay: 0.2 }}
-            className="text-base md:text-xl text-paragraph-gray mb-8"
+            className="text-sm sm:text-base md:text-xl text-paragraph-gray mb-6 md:mb-8"
           >
             Whether you're dealing with a breakdown, a flat tire, or an unexpected roadside emergency, our team is available 24/7 to get you back on track.
           </motion.p>
           <motion.div 
             {...fadeIn}
             transition={{ delay: 0.4 }}
-            className="flex flex-wrap gap-3 md:gap-4 items-center"
+            className="flex flex-wrap gap-3 items-center"
           >
-            <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-6 md:pl-8 pr-2 py-2 rounded-full flex items-center gap-6 md:gap-10 transition-all duration-500 group shadow-lg hover:shadow-xl">
-              <span className="font-medium text-sm md:text-base">Request a tow now</span>
-              <div className="bg-primary group-hover:bg-black p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
-                <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
+            <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-5 md:pl-8 pr-2 py-2 rounded-full flex items-center gap-4 md:gap-10 transition-all duration-500 group shadow-lg hover:shadow-xl">
+              <span className="font-medium text-xs sm:text-sm md:text-base">Request a tow now</span>
+              <div className="bg-primary group-hover:bg-black p-2.5 md:p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
+                <ArrowRight size={16} className="text-black group-hover:text-primary transition-colors duration-500" />
               </div>
             </Link>
-            <a href="tel:8259779460" className="bg-white border border-[#0000001a] text-black px-5 py-3 md:px-10 md:py-5 rounded-full font-medium hover:border-[#00000080] transition-all text-sm md:text-base">
+            <a href="tel:8259779460" className="bg-white border border-[#0000001a] text-black px-4 py-2.5 md:px-10 md:py-5 rounded-full font-medium hover:border-[#00000080] transition-all text-xs sm:text-sm md:text-base">
               (825) 977-9460
             </a>
           </motion.div>
@@ -97,7 +97,7 @@ const Hero = () => {
 
 const About = () => {
   return (
-    <section className="py-20 md:py-32 bg-white">
+    <section className="py-12 md:py-32 bg-white">
       <div className="max-w-[1230px] mx-auto px-4 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -106,7 +106,7 @@ const About = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-3xl md:text-6xl font-medium text-black leading-tight mb-8 md:mb-12 max-w-4xl mx-auto"
+            className="text-2xl sm:text-3xl md:text-6xl font-medium text-black leading-tight mb-6 md:mb-12 max-w-4xl mx-auto"
           >
             We are committed to providing fast, reliable, and professional roadside assistance.
           </motion.h2>
@@ -117,7 +117,7 @@ const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-paragraph-gray leading-relaxed"
+              className="text-sm sm:text-lg md:text-xl text-paragraph-gray leading-relaxed"
             >
               We are available 24/7, 365 days a year, ensuring help is always within reach when you need it most.
             </motion.p>
@@ -190,8 +190,8 @@ const About = () => {
 
 const Stats = () => {
   return (
-    <div className="max-w-[1230px] mx-auto px-4 mb-20 md:mb-32">
-      <div className="bg-light-gray rounded-10px p-6 md:p-10 grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
+    <div className="max-w-[1230px] mx-auto px-3 sm:px-4 mb-12 md:mb-32">
+      <div className="bg-light-gray rounded-10px p-4 sm:p-6 md:p-10 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10">
         {[
           { number: "30 Min", text: "Average response time to get you back on the road." },
           { number: "10K+", text: "Vehicles successfully towed and assisted." },
@@ -204,8 +204,8 @@ const Stats = () => {
             transition={{ delay: i * 0.1 }}
             className="flex flex-col"
           >
-            <span className="text-3xl md:text-[46px] font-medium text-black mb-2 leading-none">{stat.number}</span>
-            <p className="text-dark-gray text-sm md:text-base leading-[1.4] max-w-[185px]">{stat.text}</p>
+            <span className="text-2xl sm:text-3xl md:text-[46px] font-medium text-black mb-1 md:mb-2 leading-none">{stat.number}</span>
+            <p className="text-dark-gray text-xs sm:text-sm md:text-base leading-[1.4]">{stat.text}</p>
           </motion.div>
         ))}
       </div>
@@ -230,8 +230,8 @@ const Services = () => {
   const [activeTowing, setActiveTowing] = useState<number | null>(null);
 
   return (
-    <section className="py-20 md:py-32 bg-white font-sans">
-      <div className="max-w-[1230px] mx-auto px-4 grid lg:grid-cols-2 gap-16 lg:gap-8">
+    <section className="py-12 md:py-32 bg-white font-sans">
+      <div className="max-w-[1230px] mx-auto px-3 sm:px-4 grid lg:grid-cols-2 gap-10 lg:gap-8">
         {/* Roadside Section */}
         <div>
           <div className="mb-10 lg:mb-12">
@@ -251,7 +251,7 @@ const Services = () => {
                          {service.icon}
                       </div>
                     </div>
-                    <h3 className="text-2xl md:text-3xl font-medium text-black tracking-tight leading-none">{service.title}</h3>
+                    <h3 className="text-lg sm:text-2xl md:text-3xl font-medium text-black tracking-tight leading-none">{service.title}</h3>
                   </div>
                   <div className={`w-12 h-12 bg-primary rounded-full flex items-center justify-center transition-transform duration-300 ${activeRoadside === i ? "rotate-45" : "group-hover:rotate-90"}`}>
                     <Plus size={20} className="text-black" />
@@ -263,7 +263,7 @@ const Services = () => {
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="overflow-hidden"
                 >
-                  <p className="pl-[88px] pr-8 pb-4 text-paragraph-gray text-lg leading-relaxed">
+                  <p className="pl-[72px] sm:pl-[88px] pr-4 sm:pr-8 pb-4 text-paragraph-gray text-sm sm:text-lg leading-relaxed">
                     {service.description}
                   </p>
                 </motion.div>
@@ -319,7 +319,7 @@ const Services = () => {
 const BannerCta = () => {
   return (
     <section className="px-4">
-      <div className="max-w-[1230px] mx-auto relative rounded-10px overflow-hidden h-[420px] md:h-[600px]">
+      <div className="max-w-[1230px] mx-auto relative rounded-10px overflow-hidden h-[280px] sm:h-[380px] md:h-[600px]">
         <img loading="lazy" 
           src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2bc621a21dd91bdf22ac8_pexels-jonathan-reynaga-861774-17429097%20(1).jpg" 
           alt="Tow Truck at Night" 
@@ -327,15 +327,15 @@ const BannerCta = () => {
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-        <div className="absolute inset-0 p-6 md:p-14 flex flex-col justify-end md:flex-row md:justify-between md:items-end gap-6">
+        <div className="absolute inset-0 p-4 sm:p-6 md:p-14 flex flex-col justify-end md:flex-row md:justify-between md:items-end gap-4 md:gap-6">
           <div className="max-w-[600px]">
-            <span className="text-primary font-bold text-sm md:text-lg mb-3 block uppercase tracking-wider">Roadside assistance</span>
-            <h2 className="text-3xl md:text-6xl font-bold !text-white leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+            <span className="text-primary font-bold text-xs sm:text-sm md:text-lg mb-2 md:mb-3 block uppercase tracking-wider">Roadside assistance</span>
+            <h2 className="text-xl sm:text-3xl md:text-6xl font-bold !text-white leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
               Fast & reliable help anytime, anywhere.
             </h2>
           </div>
-          <Link to="/request" className="bg-white hover:bg-black text-black hover:text-primary pl-6 md:pl-8 pr-2 py-2 rounded-full flex items-center gap-6 md:gap-10 transition-all duration-500 group shrink-0 shadow-lg hover:shadow-xl w-fit">
-            <span className="font-medium text-sm md:text-base">Request a tow now</span>
+          <Link to="/request" className="bg-white hover:bg-black text-black hover:text-primary pl-5 md:pl-8 pr-2 py-2 rounded-full flex items-center gap-4 md:gap-10 transition-all duration-500 group shrink-0 shadow-lg hover:shadow-xl w-fit">
+            <span className="font-medium text-xs sm:text-sm md:text-base">Request a tow now</span>
             <div className="bg-primary group-hover:bg-white p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
               <ArrowRight size={18} className="text-black transition-colors duration-500" />
             </div>
@@ -387,11 +387,11 @@ const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="py-20 md:py-32 bg-white">
-      <div className="max-w-[1230px] mx-auto px-4 flex flex-col items-center">
+    <section className="py-12 md:py-32 bg-white">
+      <div className="max-w-[1230px] mx-auto px-3 sm:px-4 flex flex-col items-center">
         <motion.h2 
           {...fadeIn}
-          className="text-4xl md:text-5xl font-medium text-black text-center mb-16"
+          className="text-2xl sm:text-4xl md:text-5xl font-medium text-black text-center mb-8 md:mb-16"
         >
           Frequently asked questions
         </motion.h2>
@@ -407,7 +407,7 @@ const FAQ = () => {
                 className="flex justify-between items-center cursor-pointer group py-2"
                 onClick={() => setOpenIndex(openIndex === idx ? -1 : idx)}
               >
-                <h4 className={`text-xl md:text-2xl font-medium transition-colors duration-300 ${openIndex === idx ? "text-black" : "text-paragraph-gray group-hover:text-black"}`}>
+                <h4 className={`text-base sm:text-xl md:text-2xl font-medium transition-colors duration-300 pr-4 ${openIndex === idx ? "text-black" : "text-paragraph-gray group-hover:text-black"}`}>
                   {faq.q}
                 </h4>
                 <div className={`transition-transform duration-500 ease-in-out ${openIndex === idx ? "rotate-45" : ""}`}>
@@ -441,18 +441,18 @@ const FindUs = () => {
   const appleMapsUrl = `https://maps.apple.com/?q=${encodeURIComponent(address)}`;
 
   return (
-    <section id="find-us" className="py-20 md:py-32 bg-white">
-      <div className="max-w-[1230px] mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+    <section id="find-us" className="py-12 md:py-32 bg-white">
+      <div className="max-w-[1230px] mx-auto px-3 sm:px-4">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-16 items-center">
           <motion.div 
             {...fadeIn}
             className="order-2 lg:order-1"
           >
             <span className="text-black font-semibold text-lg mb-4 block underline decoration-primary decoration-4 underline-offset-8">Find us</span>
-            <h2 className="text-4xl md:text-5xl font-medium text-black leading-tight mb-8">
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-medium text-black leading-tight mb-5 md:mb-8">
               Reliable recovery service across the region.
             </h2>
-            <p className="text-lg text-paragraph-gray mb-10 max-w-[500px]">
+            <p className="text-sm sm:text-lg text-paragraph-gray mb-6 md:mb-10 max-w-[500px]">
               Our dispatch center is strategically located to ensure we can reach you anywhere within our service area in under 30 minutes.
             </p>
             
@@ -468,24 +468,24 @@ const FindUs = () => {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3">
               <a 
                 href={googleMapsUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-black hover:bg-primary text-white hover:text-black px-8 py-5 rounded-60px font-medium flex items-center gap-3 transition-all duration-300 shadow-xl border border-black"
+                className="bg-black hover:bg-primary text-white hover:text-black px-5 sm:px-8 py-3 sm:py-5 rounded-60px font-medium flex items-center gap-2 sm:gap-3 transition-all duration-300 shadow-xl border border-black text-sm sm:text-base"
               >
-                Open in Google Maps
-                <ExternalLink size={18} />
+                Google Maps
+                <ExternalLink size={16} />
               </a>
               <a 
                 href={appleMapsUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-white border-2 border-black text-black px-8 py-5 rounded-60px font-medium flex items-center gap-3 hover:bg-light-gray transition-all"
+                className="bg-white border-2 border-black text-black px-5 sm:px-8 py-3 sm:py-5 rounded-60px font-medium flex items-center gap-2 sm:gap-3 hover:bg-light-gray transition-all text-sm sm:text-base"
               >
-                Open in Apple Maps
-                <ExternalLink size={18} />
+                Apple Maps
+                <ExternalLink size={16} />
               </a>
             </div>
           </motion.div>
@@ -516,12 +516,12 @@ const FindUs = () => {
 
 const PrimaryCTA = () => {
   return (
-    <section className="py-10 px-4">
+    <section className="py-6 md:py-10 px-3 sm:px-4">
       <div className="max-w-[1230px] mx-auto bg-primary rounded-10px p-2 md:p-3">
         <div className="flex flex-col lg:flex-row bg-primary">
-          <div className="lg:w-1/2 p-6 md:p-10 lg:p-16">
-            <div className="mb-6 md:mb-10">
-              <h2 className="text-3xl md:text-[60px] font-medium leading-[1.1] text-black tracking-tighter">
+          <div className="lg:w-1/2 p-5 sm:p-6 md:p-10 lg:p-16">
+            <div className="mb-5 md:mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-[60px] font-medium leading-[1.1] text-black tracking-tighter">
                 <span className="text-dark-gray block">Need help?</span>
                 Apex Towing is just a call away!
               </h2>
