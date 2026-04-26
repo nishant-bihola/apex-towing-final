@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import GoogleReviews from "../components/GoogleReviews";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -31,14 +32,14 @@ const Hero = () => {
             {...fadeIn}
             className="text-5xl md:text-6xl lg:text-[70px] leading-[1.1] font-medium mb-6 text-black"
           >
-            Fast, reliable, roadside assistance
+            Stranded? We’ll get you moving fast.
           </motion.h1>
           <motion.p 
             {...fadeIn}
             transition={{ delay: 0.2 }}
             className="text-lg md:text-xl text-paragraph-gray mb-8"
           >
-            Whether you're dealing with a breakdown, a flat tire, or an unexpected roadside emergency, our team is available 24/7 to get you back on track.
+            No waiting. No stress. Whether you're dealing with a breakdown, a flat tire, or an emergency, Apex Towing is available 24/7 in Edmonton to get you back on track.
           </motion.p>
           <motion.div 
             {...fadeIn}
@@ -46,13 +47,14 @@ const Hero = () => {
             className="flex flex-wrap gap-4 items-center"
           >
             <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center gap-10 transition-all duration-500 group shadow-lg hover:shadow-xl">
-              <span className="font-medium">Request a tow now</span>
+              <span className="font-medium uppercase tracking-widest text-[10px]">Request a tow now</span>
               <div className="bg-primary group-hover:bg-black p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
                 <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
               </div>
             </Link>
-            <a href="tel:4805550103" className="bg-white border border-[#0000001a] text-black px-10 py-5 rounded-full font-medium hover:border-[#00000080] transition-all">
-              +(480) 555-0103
+            <a href="tel:8259779460" className="bg-white border-2 border-black text-black px-10 py-5 rounded-full font-bold hover:bg-primary transition-all flex flex-col items-center">
+              <span className="text-[10px] uppercase tracking-widest opacity-60">Call Now 24/7</span>
+              825-977-9460
             </a>
           </motion.div>
         </div>
@@ -106,7 +108,7 @@ const About = () => {
           <motion.h2 
             className="text-4xl md:text-6xl font-medium text-black leading-tight mb-12 max-w-4xl mx-auto"
           >
-            We are committed to providing fast, reliable, and professional roadside assistance.
+            Serving Edmonton for over 15 years with fast, professional service.
           </motion.h2>
           
           <div className="grid md:grid-cols-2 gap-12 mb-16 max-w-4xl mx-auto">
@@ -206,6 +208,10 @@ const Stats = () => {
             <p className="text-dark-gray text-base leading-[1.4] max-w-[185px]">{stat.text}</p>
           </motion.div>
         ))}
+      </div>
+      
+      <div className="mt-20">
+        <GoogleReviews />
       </div>
     </div>
   );
@@ -434,7 +440,7 @@ const FAQ = () => {
 };
 
 const FindUs = () => {
-  const address = "2401 W University Dr, Tempe, AZ 85281";
+  const address = "10104 103 Ave NW, Edmonton, AB T5J 0H8";
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
   const appleMapsUrl = `https://maps.apple.com/?q=${encodeURIComponent(address)}`;
 
@@ -497,7 +503,7 @@ const FindUs = () => {
             <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-2xl group-hover:bg-primary/30 transition-all duration-500"></div>
             <div className="relative rounded-20px overflow-hidden shadow-2xl border-2 border-soft-gray aspect-square lg:aspect-video w-full h-full bg-light-gray">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13319.46782414704!2d-111.979603!3d33.424193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b0ed69542b6b5%3A0xe5f86641525ba70!2s2401%20W%20University%20Dr%2C%20Tempe%2C%20AZ%2085281!5e0!3m2!1sen!2sus!4v1714080000000!5m2!1sen!2sus" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2370.08868694084!2d-113.49651!3d53.54344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0224580de3947%3A0x67396a84f3c4488!2s10104%20103%20Ave%20NW%2C%20Edmonton%2C%20AB%20T5J%200H8!5e0!3m2!1sen!2sca!4v1714080000000!5m2!1sen!2sca" 
                 className="w-full h-full grayscale-[0.2] contrast-[1.1] brightness-[0.95] hover:grayscale-0 transition-all duration-700" 
                 style={{ border: 0 }} 
                 allowFullScreen={false} 
@@ -521,7 +527,7 @@ const PrimaryCTA = () => {
             <div className="mb-10">
               <h2 className="text-4xl md:text-[60px] font-medium leading-[1.1] text-black tracking-tighter">
                 <span className="text-dark-gray block">Need help?</span>
-                AutoTowing is just a call away!
+                Apex Towing is just a call away!
               </h2>
             </div>
             <div className="flex flex-col items-start gap-10 md:gap-12">

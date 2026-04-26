@@ -114,9 +114,9 @@ const AboutPage = () => {
           <div className="grid md:grid-cols-3 gap-12 relative">
             <div className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-primary/20"></div>
             {[
-              { year: "2014", title: "The Beginning", desc: "Started with one truck and a passionate founder in a small garage." },
-              { year: "2018", title: "Fleet Expansion", desc: "Expanded to 10 trucks and added heavy-duty towing capabilities." },
-              { year: "2024", title: "The New Peak", desc: "Became the #1 rated towing service in the region with 20+ specialized vehicles." }
+              { year: "2009", title: "The Beginning", desc: "Started with one truck and a passionate founder in Edmonton." },
+              { year: "2015", title: "Fleet Expansion", desc: "Expanded to 10 trucks and added heavy-duty towing capabilities." },
+              { year: "2024", title: "The New Peak", desc: "Became the #1 rated towing service in Edmonton with 20+ specialized vehicles." }
             ].map((milestone, i) => (
               <motion.div 
                 key={i}
@@ -210,8 +210,8 @@ const AboutPage = () => {
                   <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
                 </div>
              </Link>
-             <a href="tel:4805550103" className="bg-white border border-soft-gray text-black px-10 py-5 rounded-full font-medium shadow-sm hover:shadow-md transition-all">
-                Call (480) 555-0103
+             <a href="tel:8259779460" className="bg-white border-2 border-black text-black px-10 py-5 rounded-full font-bold shadow-sm hover:shadow-md transition-all">
+                Call 825-977-9460
              </a>
           </div>
         </div>

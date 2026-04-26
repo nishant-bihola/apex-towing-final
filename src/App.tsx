@@ -40,8 +40,14 @@ import TestimonialsPage from "./pages/TestimonialsPage";
 import ServicesPage from "./pages/ServicesPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import ScrollToTop from "./components/ScrollToTop";
+import StickyCallButton from "./components/StickyCallButton";
 import { services } from "./data/services";
 import { bookTowRequest } from "./api/bookingApi";
+
+// SEO Pages
+import TowingEdmonton from "./pages/seo/TowingEdmonton";
+import RoadsideAssistanceEdmonton from "./pages/seo/RoadsideAssistanceEdmonton";
+import HeavyDutyTowingEdmonton from "./pages/seo/HeavyDutyTowingEdmonton";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -105,11 +111,11 @@ const Navbar = () => {
         {/* Right Action */}
         <div className="flex items-center gap-4">
           <a
-            href="tel:4805550103"
+            href="tel:8259779460"
             className="hidden md:flex items-center gap-3 bg-white border border-soft-gray px-6 py-3 rounded-full shadow-sm hover:shadow-md transition-all font-bold text-black text-sm"
           >
             <Phone size={18} fill="currentColor" />
-            <span>(480) 555-0103</span>
+            <span>825-977-9460</span>
           </a>
           <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -138,11 +144,11 @@ const Navbar = () => {
           <Link to="/about" className="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>ABOUT</Link>
           <Link to="/#find-us" className="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>FIND US</Link>
           <a
-            href="tel:4805550103"
+            href="tel:8259779460"
             className="flex items-center justify-center gap-2 bg-white border border-soft-gray px-8 py-3 rounded-full font-medium"
           >
             <Phone size={16} fill="currentColor" />
-            <span>(480) 555-0103</span>
+            <span>825-977-9460</span>
           </a>
         </div>
       )}
@@ -359,7 +365,14 @@ export default function App() {
           <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/service/:serviceId" element={<ServiceDetailPage />} />
+          
+          {/* SEO Routes */}
+          <Route path="/towing-edmonton" element={<TowingEdmonton />} />
+          <Route path="/roadside-assistance-edmonton" element={<RoadsideAssistanceEdmonton />} />
+          <Route path="/heavy-duty-towing-edmonton" element={<HeavyDutyTowingEdmonton />} />
         </Routes>
+        
+        <StickyCallButton />
         <Footer />
       </div>
     </Router>
