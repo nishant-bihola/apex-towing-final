@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
-import { ArrowRight, CheckCircle2, Loader2, ChevronDown } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { useState } from "react";
+import DateTimePicker from "../components/DateTimePicker";
 import { submitServiceRequest } from "../api/bookingApi";
 import { services } from "../data/services";
 
@@ -45,6 +46,13 @@ export default function RequestPage() {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleDateChange = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      serviceDate: value
     }));
   };
 
@@ -122,17 +130,10 @@ export default function RequestPage() {
                   />
                 </div>
                 <div className="relative">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-sm font-bold text-black pl-6">Requested Service Date & Time</label>
-                    <input 
-                      type="datetime-local" 
-                      name="serviceDate"
-                      value={formData.serviceDate}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-6 py-5 rounded-full border border-soft-gray focus:border-black focus:outline-none text-lg transition-colors appearance-none bg-white text-black"
-                    />
-                  </div>
+                  <DateTimePicker 
+                    value={formData.serviceDate}
+                    onChange={handleDateChange}
+                  />
                 </div>
                 <div className="relative">
                   <textarea 
