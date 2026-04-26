@@ -23,7 +23,7 @@ import {
   AlertTriangle,
   Phone
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -41,6 +41,7 @@ import ServicesPage from "./pages/ServicesPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import ScrollToTop from "./components/ScrollToTop";
 import { services } from "./data/services";
+import { bookTowRequest } from "./api/bookingApi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -228,11 +229,129 @@ const Footer = () => {
 };
 
 export default function App() {
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Artificial delay for preloader to showcase the WOW factor
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+
+    // Listen for custom events from the ElevenLabs widget
+    // Note: The widget emits events when tools are called or state changes
+    const handleMessage = async (event: MessageEvent) => {
+      if (event.data?.source === 'elevenlabs-convai' && event.data?.type === 'tool_call') {
+        const { tool, arguments: args } = event.data;
+        console.log('AI Tool Call:', tool, args);
+        
+        if (tool === 'book_tow') {
+          setToastMessage("AI is processing your tow booking...");
+          setShowToast(true);
+          
+          try {
+            const response = await bookTowRequest({
+              name: args?.name || "AI User",
+              phone: args?.phone || "Unknown",
+              serviceType: args?.service_type || "Towing",
+              location: args?.location || "Not provided",
+              timestamp: new Date().toISOString()
+            });
+            
+            if (response.success) {
+              setToastMessage("Booking confirmed! Notification sent to nishant15bihola@gmail.com.");
+              setTimeout(() => setShowToast(false), 5000);
+            }
+          } catch (error) {
+            console.error("AI Booking failed:", error);
+            setToastMessage("AI Booking failed to save.");
+          }
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
-      <div className="font-sans antialiased bg-white min-h-screen">
+      
+      {/* Premium Preloader */}
+      {loading && (
+        <motion.div 
+          initial={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center pointer-events-none"
+        >
+          <div className="relative flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-8"
+            >
+              APEXTOWING<span className="text-primary">.</span>
+            </motion.div>
+            
+            <div className="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
+              <motion.div 
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 2, ease: "easeInOut" }}
+                className="absolute top-0 left-0 h-full bg-primary"
+              />
+            </div>
+            
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="mt-6 text-[10px] font-bold tracking-[0.3em] text-white/40 uppercase"
+            >
+              Elevating Towing Services
+            </motion.div>
+          </div>
+          
+          {/* Decorative elements */}
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.2, 0.1]
+            }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]"
+          />
+        </motion.div>
+      )}
+
+      <div className={`font-sans antialiased bg-white min-h-screen relative transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <Navbar />
+        
+        {/* Success Notification for AI Booking */}
+        {showToast && (
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className="fixed bottom-32 right-8 z-[200] bg-black text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-primary/30"
+          >
+            <div className="bg-primary p-2 rounded-full">
+              <Check size={18} className="text-black" />
+            </div>
+            <span className="font-medium">{toastMessage}</span>
+            <button onClick={() => setShowToast(false)} className="ml-4 hover:text-primary transition-colors">
+              <X size={18} />
+            </button>
+          </motion.div>
+        )}
+
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />

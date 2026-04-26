@@ -61,15 +61,15 @@ const Hero = () => {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative rounded-10px overflow-hidden shadow-xl"
+          className="relative rounded-20px overflow-hidden shadow-2xl border-4 border-white"
         >
           <img 
-            src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67e557378ee0a84b0191745a_towing-service-1174901_1920%20(1).webp" 
+            src="/home-hero.png" 
             alt="Towing Service Truck" 
-            className="w-full h-[300px] md:h-[480px] object-cover"
-            referrerPolicy="no-referrer"
+            className="w-full h-[400px] md:h-[600px] object-cover hover:scale-105 transition-transform duration-1000"
           />
-          <div className="bg-primary p-4 md:p-6 flex flex-wrap justify-between items-center gap-4">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 bg-primary p-4 md:p-6 flex flex-wrap justify-between items-center gap-4">
             {[
               { id: 1, text: "Request a Tow" },
               { id: 2, text: "Get a Fast Response" },
@@ -96,39 +96,91 @@ const Hero = () => {
 const About = () => {
   return (
     <section className="py-20 md:py-32 bg-white">
-      <div className="max-w-[1230px] mx-auto px-4 flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-20">
-        <div className="lg:w-1/3">
-          <span className="text-black font-semibold text-lg">About us</span>
-        </div>
-        <div className="lg:w-2/3">
+      <div className="max-w-[1230px] mx-auto px-4 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
           <motion.h2 
-            {...fadeIn}
-            className="text-4xl md:text-5xl font-medium text-black leading-tight mb-10"
+            className="text-4xl md:text-6xl font-medium text-black leading-tight mb-12 max-w-4xl mx-auto"
           >
             We are committed to providing fast, reliable, and professional roadside assistance.
           </motion.h2>
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <p className="text-lg text-paragraph-gray">
+          
+          <div className="grid md:grid-cols-2 gap-12 mb-16 max-w-4xl mx-auto">
+            <motion.p 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg md:text-xl text-paragraph-gray leading-relaxed"
+            >
               We are available 24/7, 365 days a year, ensuring help is always within reach when you need it most.
-            </p>
-            <p className="text-lg text-paragraph-gray">
+            </motion.p>
+            <motion.p 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-lg md:text-xl text-paragraph-gray leading-relaxed"
+            >
               With an average response time of 30 minutes, we prioritize getting you back on the road quickly and safely.
-            </p>
+            </motion.p>
           </div>
-          <div className="grid sm:grid-cols-2 gap-y-4 gap-x-12 mb-12">
-            {["Reliability", "Speed & Efficiency", "Safety First", "Expertise & Professionalism"].map(item => (
-              <div key={item} className="flex items-center gap-2 text-black font-medium">
-                <div className="p-1 rounded bg-black">
-                  <Check size={14} className="text-primary" strokeWidth={3} />
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 max-w-[1230px] mx-auto"
+          >
+            {[
+              { title: "Reliability", icon: "/reliability_logo_1777169897427.png", desc: "Count on us 24/7." },
+              { title: "Speed & Efficiency", icon: "/speed_efficiency_logo_1777169912100.png", desc: "30-minute response." },
+              { title: "Safety First", icon: "/safety_first_logo_1777169922737.png", desc: "Expert handling." },
+              { title: "Professionalism", icon: "/professionalism_logo_1777169937556.png", desc: "Certified specialists." }
+            ].map((item, i) => (
+              <motion.div 
+                key={item.title} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 + (i * 0.1) }}
+                className="group relative bg-white p-8 rounded-2xl border border-soft-gray hover:border-primary hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col items-center text-center"
+              >
+                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full group-hover:scale-150 transition-transform duration-700"></div>
+                <div className="relative w-20 h-20 mb-6 p-1 rounded-full bg-light-gray group-hover:bg-primary transition-colors duration-500 flex items-center justify-center">
+                  <img 
+                    src={item.icon} 
+                    alt={item.title} 
+                    className="w-14 h-14 object-contain group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 mix-blend-multiply"
+                  />
                 </div>
-                {item}
-              </div>
+                <h3 className="text-xl font-bold text-black mb-2 group-hover:text-primary-dark transition-colors">{item.title}</h3>
+                <p className="text-sm text-paragraph-gray group-hover:text-black/80 transition-colors">{item.desc}</p>
+                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="p-1 rounded-full bg-black">
+                    <Check size={12} className="text-primary" strokeWidth={4} />
+                  </div>
+                </div>
+              </motion.div>
             ))}
-          </div>
-          <Link to="/about" className="inline-block bg-black text-white px-8 py-5 rounded-60px font-medium hover:bg-transparent hover:text-black border border-black transition-all">
-            About our company
-          </Link>
-        </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <Link to="/about" className="inline-block bg-black text-white px-12 py-5 rounded-full font-bold hover:bg-primary hover:text-black transition-all shadow-xl hover:shadow-2xl">
+              About our company
+            </Link>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

@@ -23,22 +23,37 @@ const AboutPage = () => {
   return (
     <div className="pt-24 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-light-gray">
+      <section className="py-20 md:py-32 bg-light-gray overflow-hidden">
         <div className="max-w-[1230px] mx-auto px-4">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <span className="text-black font-semibold text-lg mb-6 block underline decoration-primary decoration-4 underline-offset-8">Our Story</span>
-            <h1 className="text-5xl md:text-7xl font-medium text-black leading-[1.1] mb-8 tracking-tighter">
-              A decade of reliable roadside care.
-            </h1>
-            <p className="text-xl text-paragraph-gray leading-relaxed max-w-2xl">
-              From a single truck to a regional fleet, Apex Towing & Recovery was built on a simple promise: help people when they need it most, without delay.
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-3xl"
+            >
+              <span className="text-black font-semibold text-lg mb-6 block underline decoration-primary decoration-4 underline-offset-8">Our Story</span>
+              <h1 className="text-5xl md:text-7xl font-medium text-black leading-[1.1] mb-8 tracking-tighter">
+                A decade of reliable roadside care.
+              </h1>
+              <p className="text-xl text-paragraph-gray leading-relaxed max-w-2xl">
+                From a single truck to a regional fleet, Apex Towing & Recovery was built on a simple promise: help people when they need it most, without delay.
+              </p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
+            >
+              <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-3xl"></div>
+              <img 
+                src="/about-hero.png" 
+                alt="Apex Towing Truck" 
+                className="relative rounded-2xl shadow-2xl w-full h-[400px] object-cover border-4 border-white"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 

@@ -291,3 +291,22 @@ p {
 .button-with-icon:hover .icon-circle {
   @apply -rotate-45 transition-transform duration-500;
 }
+
+/* ElevenLabs Widget Customization */
+elevenlabs-convai {
+  --el-accent: #ffcc00;
+  --el-accent-hover: #e6b800;
+  --el-accent-primary: #000000;
+  --el-base: #ffffff;
+  --el-base-primary: #000000;
+  --el-button-radius: 60px;
+  --el-sheet-radius: 24px;
+  --el-input-radius: 60px;
+  
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  filter: drop-shadow(0 10px 15px -3px rgb(0 0 0 / 0.1)) drop-shadow(0 4px 6px -4px rgb(0 0 0 / 0.1));
+}
