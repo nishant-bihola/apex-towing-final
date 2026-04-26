@@ -17,7 +17,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Nodemailer Configuration
 const EMAIL_USER = process.env.EMAIL_USER || "nishant15bihola@gmail.com";
-const EMAIL_APP_PASSWORD = process.env.EMAIL_APP_PASSWORD;
+const EMAIL_APP_PASSWORD = process.env.EMAIL_SUB_PASS || process.env.EMAIL_APP_PASSWORD;
 const OWNER_EMAIL = "nishant15bihola@gmail.com";
 
 const transporter = nodemailer.createTransport({
