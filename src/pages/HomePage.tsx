@@ -63,7 +63,7 @@ const Hero = () => {
           viewport={{ once: true }}
           className="relative rounded-20px overflow-hidden shadow-2xl border-4 border-white"
         >
-          <img 
+          <img loading="lazy" 
             src="/home-hero.png" 
             alt="Towing Service Truck" 
             className="w-full h-[400px] md:h-[600px] object-cover hover:scale-105 transition-transform duration-1000"
@@ -153,7 +153,7 @@ const About = () => {
               >
                 <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full group-hover:scale-150 transition-transform duration-700"></div>
                 <div className="relative w-20 h-20 mb-6 p-1 rounded-full bg-light-gray group-hover:bg-primary transition-colors duration-500 flex items-center justify-center">
-                  <img 
+                  <img loading="lazy" 
                     src={item.icon} 
                     alt={item.title} 
                     className="w-14 h-14 object-contain group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 mix-blend-multiply"
@@ -318,7 +318,7 @@ const BannerCta = () => {
   return (
     <section className="px-4">
       <div className="max-w-[1230px] mx-auto relative rounded-10px overflow-hidden h-[600px]">
-        <img 
+        <img loading="lazy" 
           src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2bc621a21dd91bdf22ac8_pexels-jonathan-reynaga-861774-17429097%20(1).jpg" 
           alt="Tow Truck at Night" 
           className="w-full h-full object-cover scale-110"
@@ -349,7 +349,7 @@ const TeamSection = () => {
     <section className="py-20 md:py-32 bg-white">
       <div className="max-w-[1230px] mx-auto px-4 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         <div className="lg:w-1/2 w-full rounded-10px overflow-hidden max-h-[480px]">
-          <img 
+          <img loading="lazy" 
             src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67e66774f3bed40f642d5774_pexels-19x14-8478232%20(1).webp" 
             alt="Our Mechanic Team" 
             className="w-full h-full object-cover"
@@ -546,7 +546,7 @@ const PrimaryCTA = () => {
             </div>
           </div>
           <div className="lg:w-1/2 h-[560px] rounded-10px overflow-hidden">
-            <img 
+            <img loading="lazy" 
               src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2e18af8d1c0c328adac3a_pexels-jakewymoore-12330350%20(1).webp" 
               alt="Professional Towing" 
               className="w-full h-full object-cover"

@@ -51,7 +51,7 @@ export default function RequestPage() {
       <div className="max-w-[1230px] w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row p-4 md:p-10 gap-10 md:gap-20">
         {/* Left Image */}
         <div className="md:w-1/2 rounded-xl overflow-hidden">
-          <img 
+          <img loading="lazy" 
             src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2e18af8d1c0c328adac3a_pexels-jakewymoore-12330350%20(1).webp" 
             alt="Car on trailer" 
             className="w-full h-full object-cover min-h-[400px] md:min-h-[600px]"

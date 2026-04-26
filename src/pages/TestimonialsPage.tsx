@@ -75,7 +75,7 @@ const TestimonialsPage = () => {
               className={`flex flex-col ${item.reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-10 md:gap-20`}
             >
               <div className="w-full md:w-1/2 aspect-[4/3] rounded-10px overflow-hidden shadow-2xl">
-                <img src={item.image} alt={item.author} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img loading="lazy" src={item.image} alt={item.author} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
               <div className={`w-full md:w-1/2 p-10 md:p-16 rounded-10px ${item.bg} flex flex-col justify-center h-full min-h-[350px]`}>
                 <h2 className="text-3xl md:text-4xl font-medium text-black mb-6 leading-tight select-none">
@@ -103,7 +103,7 @@ const TestimonialsPage = () => {
                 className="bg-white p-8 rounded-10px shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <img src={item.img} alt={item.name} className="w-12 h-12 rounded-full object-cover" referrerPolicy="no-referrer" />
+                  <img loading="lazy" src={item.img} alt={item.name} className="w-12 h-12 rounded-full object-cover" referrerPolicy="no-referrer" />
                   <div className="font-bold text-black">{item.name}</div>
                 </div>
                 <p className="text-paragraph-gray leading-relaxed italic">

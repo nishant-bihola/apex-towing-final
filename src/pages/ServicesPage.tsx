@@ -43,7 +43,7 @@ const ServicesPage = () => {
                 className="group flex flex-col h-full bg-white border border-soft-gray hover:border-primary rounded-10px overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500"
               >
                 <div className="h-64 overflow-hidden relative">
-                  <img src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerPolicy="no-referrer" />
+                  <img loading="lazy" src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerPolicy="no-referrer" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
                   <div className="absolute bottom-0 left-0 p-6">
                      <span className="bg-primary text-black font-bold text-[10px] uppercase tracking-widest px-3 py-1 rounded-full">Explore</span>

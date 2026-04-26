@@ -28,7 +28,7 @@ const ServiceDetailPage = () => {
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={service.image} alt={service.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+          <img loading="lazy" src={service.image} alt={service.title} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
           <div className="absolute inset-0 bg-black/70 md:bg-gradient-to-r md:from-black/90 md:via-black/60 md:to-transparent"></div>
         </div>
         
@@ -64,7 +64,7 @@ const ServiceDetailPage = () => {
 
               {/* Secondary Image within content */}
               <div className="my-12 rounded-xl overflow-hidden shadow-xl aspect-video border border-soft-gray">
-                 <img 
+                 <img loading="lazy" 
                     src={service.image} 
                     alt="Service in action" 
                     className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700"
@@ -152,7 +152,7 @@ const ServiceDetailPage = () => {
                 className="group bg-white rounded-xl overflow-hidden border border-soft-gray hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
               >
                 <div className="h-48 overflow-hidden">
-                  <img src={s.image} alt={s.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerPolicy="no-referrer" />
+                  <img loading="lazy" src={s.image} alt={s.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerPolicy="no-referrer" />
                 </div>
                 <div className="p-8">
                   <h4 className="text-xl font-bold text-black mb-4 group-hover:text-primary transition-colors">{s.title}</h4>

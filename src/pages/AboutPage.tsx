@@ -47,7 +47,7 @@ const AboutPage = () => {
               className="relative"
             >
               <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-3xl"></div>
-              <img 
+              <img loading="lazy" 
                 src="/about-hero.png" 
                 alt="Apex Towing Truck" 
                 className="relative rounded-2xl shadow-2xl w-full h-[400px] object-cover border-4 border-white"
@@ -63,7 +63,7 @@ const AboutPage = () => {
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <div className="relative group">
               <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-2xl group-hover:bg-primary/30 transition-all duration-500"></div>
-              <img 
+              <img loading="lazy" 
                 src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2bc621a21dd91bdf22ac8_pexels-jonathan-reynaga-861774-17429097%20(1).jpg" 
                 alt="Our Mission" 
                 className="relative rounded-10px shadow-2xl w-full h-[500px] object-cover"
@@ -168,7 +168,7 @@ const AboutPage = () => {
                 className="group"
               >
                 <div className="aspect-[4/5] rounded-xl overflow-hidden mb-6 relative">
-                  <img src={member.img} alt={member.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
+                  <img loading="lazy" src={member.img} alt={member.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" referrerPolicy="no-referrer" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
                 <h4 className="text-xl font-bold text-black">{member.name}</h4>
