@@ -3,12 +3,17 @@ import { createClient } from '@supabase/supabase-js';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { Client } from '@notionhq/client';
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+// Notion Configuration
+const notion = new Client({ auth: process.env.VITE_NOTION_TOKEN });
+const NOTION_DATABASE_ID = process.env.VITE_NOTION_DATABASE_ID;
 
 // Supabase Configuration
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
@@ -43,7 +48,7 @@ app.post('/api/booking', async (req, res) => {
   }
 
   try {
-    const results = { supabase: false, ownerEmail: false, clientEmail: false };
+    const results = { supabase: false, notion: false, ownerEmail: false, clientEmail: false };
 
     // 1. Supabase Sync
     const { error: supabaseError } = await supabase
@@ -62,7 +67,40 @@ app.post('/api/booking', async (req, res) => {
     if (supabaseError) throw supabaseError;
     results.supabase = true;
 
-    // 2. Notification to Owner
+    // 2. Notion Sync
+    if (NOTION_DATABASE_ID && process.env.VITE_NOTION_TOKEN) {
+      try {
+        await notion.pages.create({
+          parent: { database_id: NOTION_DATABASE_ID },
+          properties: {
+            Name: {
+              title: [{ text: { content: data.name || 'Unknown' } }]
+            },
+            Phone: {
+              phone_number: data.phone || ''
+            },
+            Message: {
+              rich_text: [{ text: { content: `${data.serviceType}: ${data.message || 'No message'}${data.email ? ` (Email: ${data.email})` : ''}` } }]
+            },
+            Source: {
+              select: { name: data.source === 'AI Agent' ? 'AI Agent' : 'Website Form' }
+            },
+            Date: {
+              date: { start: new Date().toISOString() }
+            },
+            Status: {
+              status: { name: 'Not started' }
+            }
+          }
+        });
+        results.notion = true;
+      } catch (err) {
+        console.error('Notion Sync Error:', err.message);
+        results.notionError = err.message;
+      }
+    }
+
+    // 3. Notification to Owner
     if (EMAIL_APP_PASSWORD) {
       try {
         await transporter.sendMail({
