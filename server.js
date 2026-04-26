@@ -25,6 +25,15 @@ app.post('/api/booking', async (req, res) => {
   console.log('--- NEW BOOKING REQUEST ---');
   console.log('Body:', JSON.stringify(data, null, 2));
 
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    console.error('CRITICAL ERROR: Supabase environment variables are missing!');
+    return res.status(500).json({ success: false, error: 'Server configuration error: Database keys are missing.' });
+  }
+
+  if (!RESEND_API_KEY) {
+    console.warn('WARNING: RESEND_API_KEY is missing! Emails will not be sent.');
+  }
+
   try {
     const results = { supabase: false, ownerEmail: false, clientEmail: false };
 
@@ -47,7 +56,7 @@ app.post('/api/booking', async (req, res) => {
 
     // 2. Notification to Owner
     if (resend) {
-      await resend.emails.send({
+      const ownerResponse = await resend.emails.send({
         from: 'Apex Towing Leads <onboarding@resend.dev>',
         to: [OWNER_EMAIL],
         subject: `New Lead: ${data.serviceType} from ${data.name}`,
@@ -62,36 +71,43 @@ app.post('/api/booking', async (req, res) => {
           <p><em>Check your Supabase dashboard for details.</em></p>
         `
       });
-      results.ownerEmail = true;
+
+      if (ownerResponse.error) {
+        console.error('Failed to send owner email:', ownerResponse.error);
+        results.ownerEmailError = ownerResponse.error.message;
+      } else {
+        results.ownerEmail = true;
+      }
 
       // 3. Confirmation to Client
       if (data.email) {
         console.log(`Sending confirmation to client: ${data.email}`);
-        try {
-          await resend.emails.send({
-            from: 'Apex Towing <onboarding@resend.dev>',
-            to: [data.email],
-            subject: 'We received your towing request!',
-            html: `
-              <h3>Hello ${data.name},</h3>
-              <p>Thank you for reaching out to Apex Towing. We have received your request for <strong>${data.serviceType}</strong>.</p>
-              <p>One of our team members will contact you shortly at <strong>${data.phone}</strong>.</p>
-              <br>
-              <p><strong>Request Details:</strong></p>
-              <ul>
-                <li>Service: ${data.serviceType}</li>
-                <li>Message: ${data.message || 'N/A'}</li>
-              </ul>
-              <br>
-              <p>If this is an extreme emergency, please call us directly.</p>
-              <p>Best regards,<br>The Apex Towing Team</p>
-            `
-          });
+        const clientResponse = await resend.emails.send({
+          from: 'Apex Towing <onboarding@resend.dev>',
+          to: [data.email],
+          subject: 'We received your towing request!',
+          html: `
+            <h3>Hello ${data.name},</h3>
+            <p>Thank you for reaching out to Apex Towing. We have received your request for <strong>${data.serviceType}</strong>.</p>
+            <p>One of our team members will contact you shortly at <strong>${data.phone}</strong>.</p>
+            <br>
+            <p><strong>Request Details:</strong></p>
+            <ul>
+              <li>Service: ${data.serviceType}</li>
+              <li>Message: ${data.message || 'N/A'}</li>
+            </ul>
+            <br>
+            <p>If this is an extreme emergency, please call us directly.</p>
+            <p>Best regards,<br>The Apex Towing Team</p>
+          `
+        });
+
+        if (clientResponse.error) {
+          console.error('Failed to send client email (Resend free tier limits):', clientResponse.error.message);
+          results.clientEmailError = clientResponse.error.message;
+        } else {
           results.clientEmail = true;
           console.log('Client email sent successfully');
-        } catch (clientEmailError) {
-          console.error('Failed to send client email (Resend free tier limits):', clientEmailError.message);
-          results.clientEmailError = clientEmailError.message;
         }
       }
     }
