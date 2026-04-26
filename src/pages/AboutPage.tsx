@@ -12,6 +12,7 @@ import {
   MapPin,
   Truck
 } from "lucide-react";
+import SEO from "../components/SEO";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -22,6 +23,11 @@ const fadeIn = {
 const AboutPage = () => {
   return (
     <div className="pt-20 min-h-screen bg-white">
+      <SEO 
+        title="About Us | Trusted Towing Professionals in Edmonton"
+        description="Learn more about Apex Towing, Edmonton's premier choice for 24/7 towing and roadside recovery. A decade of reliable service across St. Albert, Sherwood Park, and beyond."
+        keywords="about apex towing, edmonton towing company, professional towing edmonton, reliable roadside assistance edmonton"
+      />
       {/* Hero Section */}
       <section className="py-8 md:py-32 bg-light-gray overflow-hidden">
         <div className="max-w-[1230px] mx-auto px-3 sm:px-4">
@@ -34,10 +40,10 @@ const AboutPage = () => {
             >
               <span className="text-black font-semibold text-sm md:text-lg mb-3 md:mb-6 block underline decoration-primary decoration-4 underline-offset-8">Our Story</span>
               <h1 className="text-2xl sm:text-5xl md:text-7xl font-medium text-black leading-[1.1] mb-4 md:mb-8 tracking-tighter">
-                A decade of reliable roadside care.
+                A decade of reliable roadside care in Edmonton.
               </h1>
               <p className="text-sm md:text-xl text-paragraph-gray leading-relaxed max-w-2xl">
-                From a single truck to a regional fleet, Apex Towing & Recovery was built on a simple promise: help people when they need it most, without delay.
+                From a single truck to a regional fleet serving Edmonton and surrounding areas, Apex Towing & Recovery was built on a simple promise: help people when they need it most, without delay.
               </p>
             </motion.div>
             <motion.div
@@ -73,7 +79,7 @@ const AboutPage = () => {
             <div>
               <h2 className="text-2xl md:text-5xl font-medium text-black mb-4 md:mb-10 tracking-tight">Our Mission</h2>
               <p className="text-sm md:text-lg text-paragraph-gray mb-6 md:mb-12 leading-relaxed">
-                Our mission is to provide the fastest, safest, and most professional towing and recovery services in the industry. We believe that a roadside emergency shouldn't ruin your day, and our team works tirelessly to ensure your peace of mind.
+                Our mission is to provide the fastest, safest, and most professional towing and recovery services in Edmonton and the surrounding regions. We believe that a roadside emergency shouldn't ruin your day, and our team works tirelessly to ensure your peace of mind 24/7.
               </p>
               
               <div className="space-y-6">
@@ -114,9 +120,9 @@ const AboutPage = () => {
           <div className="grid md:grid-cols-3 gap-8 relative">
             <div className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-primary/20"></div>
             {[
-              { year: "2014", title: "The Beginning", desc: "Started with one truck and a passionate founder in a small garage." },
-              { year: "2018", title: "Fleet Expansion", desc: "Expanded to 10 trucks and added heavy-duty towing capabilities." },
-              { year: "2024", title: "The New Peak", desc: "Became the #1 rated towing service in the region with 20+ specialized vehicles." }
+              { year: "2014", title: "The Beginning", desc: "Started with one truck and a passionate founder in a small Edmonton garage." },
+              { year: "2018", title: "Fleet Expansion", desc: "Expanded to 10 trucks and added heavy-duty towing capabilities across AB." },
+              { year: "2024", title: "The New Peak", desc: "Became the #1 rated towing service in Edmonton with 20+ specialized vehicles." }
             ].map((milestone, i) => (
               <motion.div 
                 key={i}

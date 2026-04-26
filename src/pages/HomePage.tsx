@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -31,14 +32,14 @@ const Hero = () => {
             {...fadeIn}
             className="text-3xl sm:text-4xl md:text-6xl lg:text-[70px] leading-[1.1] font-medium mb-4 md:mb-6 text-black"
           >
-            Fast, reliable, roadside assistance
+            Stranded? We'll Get You Moving in <span className="text-primary">30 Minutes</span> or Less in Edmonton.
           </motion.h1>
           <motion.p 
             {...fadeIn}
             transition={{ delay: 0.2 }}
             className="text-sm sm:text-base md:text-xl text-paragraph-gray mb-6 md:mb-8"
           >
-            Whether you're dealing with a breakdown, a flat tire, or an unexpected roadside emergency, our team is available 24/7 to get you back on track.
+            Don't let a breakdown derail your schedule. Whether it's a flat tire, a dead battery, or an emergency tow in Edmonton, our elite response team is available 24/7 to rescue you and your vehicle.
           </motion.p>
           <motion.div 
             {...fadeIn}
@@ -65,7 +66,7 @@ const Hero = () => {
         >
           <img loading="lazy" 
             src="/home-hero.png" 
-            alt="Towing Service Truck" 
+            alt="Apex Towing Emergency Service Truck in Edmonton" 
             className="w-full h-[260px] sm:h-[380px] md:h-[580px] object-cover hover:scale-105 transition-transform duration-1000"
             style={{ objectPosition: 'center 65%' }}
           />
@@ -108,7 +109,7 @@ const About = () => {
           <motion.h2 
             className="text-2xl sm:text-3xl md:text-6xl font-medium text-black leading-tight mb-6 md:mb-12 max-w-4xl mx-auto"
           >
-            We are committed to providing fast, reliable, and professional roadside assistance.
+            Edmonton's #1 Choice for Rapid Roadside Recovery.
           </motion.h2>
           
           <div className="grid md:grid-cols-2 gap-12 mb-16 max-w-4xl mx-auto">
@@ -119,7 +120,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-sm sm:text-lg md:text-xl text-paragraph-gray leading-relaxed"
             >
-              We are available 24/7, 365 days a year, ensuring help is always within reach when you need it most.
+              We aren't just a towing company; we're your safety net. Serving Edmonton, St. Albert, and Sherwood Park 24/7, we ensure that no driver in our region ever has to face the road alone.
             </motion.p>
             <motion.p 
               initial={{ opacity: 0, x: 30 }}
@@ -128,7 +129,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-lg md:text-xl text-paragraph-gray leading-relaxed"
             >
-              With an average response time of 30 minutes, we prioritize getting you back on the road quickly and safely.
+              Precision, speed, and safety are the pillars of our local towing service. With a 30-minute average arrival time across Edmonton, we turn your emergency into a resolved situation.
             </motion.p>
           </div>
 
@@ -140,10 +141,10 @@ const About = () => {
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 max-w-[1230px] mx-auto"
           >
             {[
-              { title: "Reliability", icon: "/reliability_logo_1777169897427.png", desc: "Count on us 24/7." },
-              { title: "Speed & Efficiency", icon: "/speed_efficiency_logo_1777169912100.png", desc: "30-minute response." },
-              { title: "Safety First", icon: "/safety_first_logo_1777169922737.png", desc: "Expert handling." },
-              { title: "Professionalism", icon: "/professionalism_logo_1777169937556.png", desc: "Certified specialists." }
+              { title: "24/7 Edmonton Wide", icon: "/reliability_logo_1777169897427.png", desc: "Always on call, 24/7/365." },
+              { title: "Rapid Arrival", icon: "/speed_efficiency_logo_1777169912100.png", desc: "On-site within 30 minutes or less." },
+              { title: "Safety First", icon: "/safety_first_logo_1777169922737.png", desc: "Expert, damage-free recovery." },
+              { title: "Certified Fleet", icon: "/professionalism_logo_1777169937556.png", desc: "Fully licensed and insured pros." }
             ].map((item, i) => (
               <motion.div 
                 key={item.title} 
@@ -193,10 +194,10 @@ const Stats = () => {
     <div className="max-w-[1230px] mx-auto px-3 sm:px-4 mb-12 md:mb-32">
       <div className="bg-light-gray rounded-10px p-4 sm:p-6 md:p-10 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10">
         {[
-          { number: "30 Min", text: "Average response time to get you back on the road." },
-          { number: "10K+", text: "Vehicles successfully towed and assisted." },
-          { number: "20+", text: "Tow trucks in our fleet, ready to assist." },
-          { number: "365 days", text: "Always on standby, even on holidays." }
+          { number: "30 Min", text: "Average response time to rescue you from the roadside." },
+          { number: "10K+", text: "Successful rescues and vehicle recoveries completed." },
+          { number: "20+", text: "Modern heavy-duty tow trucks ready for dispatch." },
+          { number: "Always", text: "Available 24/7/365, ensuring you're never alone." }
         ].map((stat, i) => (
           <motion.div 
             key={i} 
@@ -322,7 +323,7 @@ const BannerCta = () => {
       <div className="max-w-[1230px] mx-auto relative rounded-10px overflow-hidden h-[280px] sm:h-[380px] md:h-[600px]">
         <img loading="lazy" 
           src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2bc621a21dd91bdf22ac8_pexels-jonathan-reynaga-861774-17429097%20(1).jpg" 
-          alt="Tow Truck at Night" 
+          alt="Apex Towing Night Roadside Assistance Vehicle in Edmonton" 
           className="w-full h-full object-cover scale-110"
           referrerPolicy="no-referrer"
         />
@@ -331,7 +332,7 @@ const BannerCta = () => {
           <div className="max-w-[600px]">
             <span className="text-primary font-bold text-xs sm:text-sm md:text-lg mb-2 md:mb-3 block uppercase tracking-wider">Roadside assistance</span>
             <h2 className="text-xl sm:text-3xl md:text-6xl font-bold !text-white leading-[1.1] tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-              Fast & reliable help anytime, anywhere.
+              Emergency? Our Dispatchers are Standing By.
             </h2>
           </div>
           <Link to="/request" className="bg-white hover:bg-black text-black hover:text-primary pl-5 md:pl-8 pr-2 py-2 rounded-full flex items-center gap-4 md:gap-10 transition-all duration-500 group shrink-0 shadow-lg hover:shadow-xl w-fit">
@@ -353,7 +354,7 @@ const TeamSection = () => {
         <div className="lg:w-1/2 w-full rounded-10px overflow-hidden h-[280px] sm:h-[380px] lg:max-h-[480px]">
           <img loading="lazy" 
             src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67e66774f3bed40f642d5774_pexels-19x14-8478232%20(1).webp" 
-            alt="Our Mechanic Team" 
+            alt="Certified Apex Towing Professional Recovery Team" 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
@@ -361,7 +362,7 @@ const TeamSection = () => {
         <div className="lg:w-1/2 pl-0 lg:pl-10">
           <span className="text-black font-semibold text-base md:text-lg mb-4 block">Experts you can trust</span>
           <h2 className="text-3xl md:text-5xl font-medium text-black leading-tight mb-4 md:mb-6">
-            Our team is the backbone of our service.
+            Meet the Pros Behind the Rescue.
           </h2>
           <p className="text-base md:text-lg text-paragraph-gray mb-8 md:mb-10">
             Our certified professionals are dedicated to providing fast, reliable, and safe solutions whenever you need help.
@@ -522,8 +523,8 @@ const PrimaryCTA = () => {
           <div className="lg:w-1/2 p-5 sm:p-6 md:p-10 lg:p-16">
             <div className="mb-5 md:mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-[60px] font-medium leading-[1.1] text-black tracking-tighter">
-                <span className="text-dark-gray block">Need help?</span>
-                Apex Towing is just a call away!
+                <span className="text-dark-gray block">Stuck in Edmonton?</span>
+                Apex Towing is Just One Call Away.
               </h2>
             </div>
             <div className="flex flex-col items-start gap-6 md:gap-12">
@@ -550,7 +551,7 @@ const PrimaryCTA = () => {
           <div className="lg:w-1/2 h-[300px] md:h-[420px] lg:h-[560px] rounded-10px overflow-hidden">
             <img loading="lazy" 
               src="https://cdn.prod.website-files.com/67d1666f8b02642a9ce876dc/67d2e18af8d1c0c328adac3a_pexels-jakewymoore-12330350%20(1).webp" 
-              alt="Professional Towing" 
+              alt="Apex Towing Flatbed Truck Service Edmonton" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
@@ -564,6 +565,11 @@ const PrimaryCTA = () => {
 export default function HomePage() {
   return (
     <>
+      <SEO 
+        title="24/7 Emergency Towing & Roadside Assistance Edmonton"
+        description="Need a tow in Edmonton? Apex Towing offers 24/7 emergency towing, flat tire changes, jump starts, and car lockout services. 30-minute response time guaranteed."
+        keywords="towing edmonton, emergency towing edmonton, roadside assistance edmonton, flat tire change edmonton, car lockout service edmonton, jump start edmonton"
+      />
       <Hero />
       <About />
       <Stats />

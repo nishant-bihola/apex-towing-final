@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
 import { Check, ArrowRight, Truck, Timer, ShieldCheck, MapPin } from "lucide-react";
 import { services } from "../data/services";
+import SEO from "../components/SEO";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -25,6 +26,11 @@ const ServiceDetailPage = () => {
 
   return (
     <div className="pt-24 bg-white min-h-screen">
+      <SEO 
+        title={`${service.title} Edmonton | Apex Towing`}
+        description={`${service.title} in Edmonton, AB. ${service.description} Fast, reliable service in Edmonton and surrounding areas.`}
+        keywords={`${service.title}, towing edmonton, roadside assistance, emergency towing, apex towing`}
+      />
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">

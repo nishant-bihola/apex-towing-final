@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Star, Check, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import SEO from "../components/SEO";
 
 const fadeIn = {
   initial: { opacity: 0, y: 30 },
@@ -46,6 +47,11 @@ const TestimonialsPage = () => {
 
   return (
     <div className="pt-24 min-h-screen bg-white">
+      <SEO 
+        title="Testimonials & Reviews | Apex Towing Edmonton"
+        description="See what our customers are saying about Apex Towing in Edmonton. Read reviews from people who used our 24/7 towing and roadside assistance services."
+        keywords="apex towing reviews, towing company edmonton testimonials, roadside assistance reviews, top rated towing edmonton"
+      />
       {/* Header */}
       <section className="py-20 md:py-32 bg-white">
         <div className="max-w-[1230px] mx-auto px-4 text-center">

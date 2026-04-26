@@ -11,9 +11,9 @@ export interface Service {
 export const services: Service[] = [
   {
     id: "traffic-control-cleanup",
-    title: "Traffic Control & Cleanup",
-    description: "Rapid response traffic management and accident site restoration.",
-    longDescription: "Our specialized traffic control team ensures the safety of motorists and first responders at accident scenes. We provide comprehensive cleanup services to remove debris and fluids, restoring the roadway to safe conditions as quickly as possible.",
+    title: "Traffic Control & Cleanup Edmonton",
+    description: "Rapid response traffic management and accident site restoration in Edmonton.",
+    longDescription: "Our specialized traffic control team ensures the safety of motorists and first responders at accident scenes across Edmonton. We provide comprehensive cleanup services to remove debris and fluids, restoring the roadway to safe conditions as quickly as possible.",
     image: "/traffic_control_cleanup_1777170351794.png",
     features: [
       "24/7 Emergency Response",
@@ -25,9 +25,9 @@ export const services: Service[] = [
   },
   {
     id: "roadside-servicing",
-    title: "Roadside Servicing",
-    description: "Fuel delivery, jump starts, and minor mechanical repairs on the spot.",
-    longDescription: "Getting back on the road shouldn't always require a tow. Our roadside servicing team is equipped to handle common vehicle issues right where you are. From battery jump-starts to fuel delivery and tire changes, we bring the solution to you.",
+    title: "Roadside Assistance Edmonton",
+    description: "Fuel delivery, jump starts, and minor mechanical repairs on the spot in Edmonton.",
+    longDescription: "Getting back on the road in Edmonton shouldn't always require a tow. Our roadside servicing team is equipped to handle common vehicle issues right where you are. From battery jump-starts to fuel delivery and tire changes, we bring the solution to you.",
     image: "/roadside_servicing_1777170368047.png",
     features: [
       "Battery Jump-Starts",
@@ -39,9 +39,9 @@ export const services: Service[] = [
   },
   {
     id: "towing-recovery",
-    title: "Towing & Recovery",
-    description: "Standard and specialized vehicle transport for all makes and models.",
-    longDescription: "Apex provides professional towing and recovery for all vehicle types. Whether your car has suffered mechanical failure or was involved in an accident, our modern fleet ensures damage-free transport to your preferred destination.",
+    title: "Emergency Towing Edmonton",
+    description: "Standard and specialized vehicle transport for all makes and models in Edmonton.",
+    longDescription: "Apex provides professional towing and recovery for all vehicle types in Edmonton and surrounding areas. Whether your car has suffered mechanical failure or was involved in an accident, our modern fleet ensures damage-free transport to your preferred destination.",
     image: "/towing_recovery_flatbed_1777170384302.png",
     features: [
       "Local & Long Distance Towing",

@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Truck, Timer, ShieldCheck, MapPin, Search } from "lucide-react";
+import { ArrowRight, Timer, ShieldCheck, MapPin } from "lucide-react";
 import { services } from "../data/services";
+import SEO from "../components/SEO";
 
 const fadeIn = {
   initial: { opacity: 0, y: 20 },
@@ -13,6 +14,11 @@ const fadeIn = {
 const ServicesPage = () => {
   return (
     <div className="pt-24 bg-white min-h-screen">
+      <SEO 
+        title="Comprehensive Recovery & Traffic Management Services | Edmonton"
+        description="We provide expert towing, heavy-duty recovery, and rapid-response traffic control and accident cleanup services in Edmonton. Reliable, professional, and fast."
+        keywords="towing services edmonton, traffic control edmonton, accident cleanup edmonton, heavy duty recovery edmonton, roadside assistance edmonton"
+      />
       {/* Hero */}
       <section className="py-20 md:py-32 bg-black text-white">
         <div className="max-w-[1230px] mx-auto px-4 text-center">

@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, Loader2, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { submitServiceRequest } from "../api/bookingApi";
 import { services } from "../data/services";
+import SEO from "../components/SEO";
 
 export default function RequestPage() {
   const [formData, setFormData] = useState({
@@ -48,6 +49,11 @@ export default function RequestPage() {
 
   return (
     <div className="pt-20 min-h-screen bg-light-gray flex items-center justify-center p-3 sm:p-4">
+      <SEO 
+        title="Request Service Edmonton | 24/7 Apex Towing"
+        description="Need immediate towing or roadside assistance in Edmonton? Fill out our quick request form and get help in 30 minutes or less. Emergency service available 24/7."
+        keywords="request towing edmonton, emergency roadside assistance form, book towing service, apex towing edmonton"
+      />
       <div className="max-w-[1230px] w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row p-3 sm:p-4 md:p-10 gap-6 md:gap-20">
         {/* Left Image */}
         <div className="md:w-1/2 rounded-xl overflow-hidden">
