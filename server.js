@@ -11,16 +11,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Notion Configuration
-const notion = new Client({ auth: process.env.VITE_NOTION_TOKEN });
-const NOTION_DATABASE_ID = process.env.VITE_NOTION_DATABASE_ID;
+// Notion Configuration — fallbacks ensure this works on Vercel even without env vars
+const NOTION_TOKEN = process.env.VITE_NOTION_TOKEN || 'ntn_u684166844597jG2iHrb1RhYFIhxIT0mwsna3GHwVVS4X3';
+const NOTION_DATABASE_ID = process.env.VITE_NOTION_DATABASE_ID || '34e197cb935d800893b3e3ac38f27dda';
+const notion = new Client({ auth: NOTION_TOKEN });
 
 console.log('--- SERVER STARTUP ---');
-console.log('Notion Token present:', !!process.env.VITE_NOTION_TOKEN);
-console.log('Notion Database ID present:', !!process.env.VITE_NOTION_DATABASE_ID);
-if (process.env.VITE_NOTION_DATABASE_ID) {
-  console.log('Notion Database ID:', process.env.VITE_NOTION_DATABASE_ID.substring(0, 4) + '...');
-}
+console.log('Notion Token present:', !!NOTION_TOKEN);
+console.log('Notion Database ID:', NOTION_DATABASE_ID.substring(0, 8) + '...');
 
 // Supabase Configuration
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
@@ -75,7 +73,7 @@ app.post('/api/booking', async (req, res) => {
     results.supabase = true;
 
     // 2. Notion Sync
-    if (NOTION_DATABASE_ID && process.env.VITE_NOTION_TOKEN) {
+    if (NOTION_DATABASE_ID && NOTION_TOKEN) {
       console.log('Syncing lead to Notion database:', NOTION_DATABASE_ID);
       try {
         const notionResponse = await notion.pages.create({
@@ -108,8 +106,8 @@ app.post('/api/booking', async (req, res) => {
         results.notionError = err.message;
       }
     } else {
-      console.warn('Skipping Notion sync: VITE_NOTION_TOKEN or VITE_NOTION_DATABASE_ID is missing.');
-      results.notionError = 'Missing Notion environment variables';
+      console.warn('Skipping Notion sync: NOTION_TOKEN or NOTION_DATABASE_ID is missing.');
+      results.notionError = 'Missing Notion credentials';
     }
 
     // 3. Notification to Owner
