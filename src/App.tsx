@@ -41,7 +41,6 @@ import ServicesPage from "./pages/ServicesPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import ScrollToTop from "./components/ScrollToTop";
 import { services } from "./data/services";
-import { bookTowRequest } from "./api/bookingApi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,8 +50,8 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-soft-gray py-4">
       <div className="max-w-[1230px] mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-2xl font-bold tracking-tighter text-black">
-          APEXTOWING.
+        <Link to="/" className="text-2xl font-bold tracking-tighter text-black uppercase">
+          Apex Towing<span className="text-primary">.</span>
         </Link>
 
         {/* Middle Links */}
@@ -105,11 +104,11 @@ const Navbar = () => {
         {/* Right Action */}
         <div className="flex items-center gap-4">
           <a
-            href="tel:4805550103"
+            href="tel:8259779460"
             className="hidden md:flex items-center gap-3 bg-white border border-soft-gray px-6 py-3 rounded-full shadow-sm hover:shadow-md transition-all font-bold text-black text-sm"
           >
             <Phone size={18} fill="currentColor" />
-            <span>(480) 555-0103</span>
+            <span>(825) 977-9460</span>
           </a>
           <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -138,11 +137,11 @@ const Navbar = () => {
           <Link to="/about" className="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>ABOUT</Link>
           <Link to="/#find-us" className="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>FIND US</Link>
           <a
-            href="tel:4805550103"
+            href="tel:8259779460"
             className="flex items-center justify-center gap-2 bg-white border border-soft-gray px-8 py-3 rounded-full font-medium"
           >
             <Phone size={16} fill="currentColor" />
-            <span>(480) 555-0103</span>
+            <span>(825) 977-9460</span>
           </a>
         </div>
       )}
@@ -196,9 +195,18 @@ const Footer = () => {
             <h4 className="text-2xl font-medium text-black mb-8 leading-tight">
               Subscribe to be in touch with latest news.
             </h4>
-            <form className="relative">
+            <form className="relative" onSubmit={(e) => {
+              e.preventDefault();
+              const form = e.target as HTMLFormElement;
+              const input = form.elements[0] as HTMLInputElement;
+              if (input.value) {
+                alert("Thank you for subscribing! You will receive our latest updates.");
+                input.value = '';
+              }
+            }}>
               <input 
                 type="email" 
+                required
                 placeholder="Email address" 
                 className="w-full h-[72px] rounded-60px border border-soft-gray px-8 focus:border-paragraph-gray focus:outline-none focus:text-black transition-all bg-white"
               />
@@ -214,12 +222,12 @@ const Footer = () => {
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-paragraph-gray">
           <div className="flex gap-2 items-center">
-            <span>© Apex Towing & Recovery. All Rights Reserved.</span>
+            <span>Copyright © 2026 Nishant Bihola. All Rights Reserved.</span>
           </div>
           <div className="flex items-center gap-6">
             <div className="flex gap-1 items-center">
               <span>Template by</span>
-              <a href="#" className="text-black font-medium">Apex Support</a>
+              <a href="#" className="text-black font-medium">Nishant Bihola</a>
             </div>
           </div>
         </div>
@@ -229,8 +237,6 @@ const Footer = () => {
 };
 
 export default function App() {
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -239,41 +245,7 @@ export default function App() {
       setLoading(false);
     }, 2500);
 
-    // Listen for custom events from the ElevenLabs widget
-    // Note: The widget emits events when tools are called or state changes
-    const handleMessage = async (event: MessageEvent) => {
-      if (event.data?.source === 'elevenlabs-convai' && event.data?.type === 'tool_call') {
-        const { tool, arguments: args } = event.data;
-        console.log('AI Tool Call:', tool, args);
-        
-        if (tool === 'book_tow') {
-          setToastMessage("AI is processing your tow booking...");
-          setShowToast(true);
-          
-          try {
-            const response = await bookTowRequest({
-              name: args?.name || "AI User",
-              phone: args?.phone || "Unknown",
-              serviceType: args?.service_type || "Towing",
-              location: args?.location || "Not provided",
-              timestamp: new Date().toISOString()
-            });
-            
-            if (response.success) {
-              setToastMessage("Booking confirmed! Notification sent to nishant15bihola@gmail.com.");
-              setTimeout(() => setShowToast(false), 5000);
-            }
-          } catch (error) {
-            console.error("AI Booking failed:", error);
-            setToastMessage("AI Booking failed to save.");
-          }
-        }
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
     return () => {
-      window.removeEventListener('message', handleMessage);
       clearTimeout(timer);
     };
   }, []);
@@ -297,7 +269,7 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl md:text-6xl font-bold tracking-tighter text-white mb-8"
             >
-              APEXTOWING<span className="text-primary">.</span>
+              APEX TOWING<span className="text-primary">.</span>
             </motion.div>
             
             <div className="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
@@ -334,23 +306,7 @@ export default function App() {
       <div className={`font-sans antialiased bg-white min-h-screen relative transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <Navbar />
         
-        {/* Success Notification for AI Booking */}
-        {showToast && (
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-32 right-8 z-[200] bg-black text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-primary/30"
-          >
-            <div className="bg-primary p-2 rounded-full">
-              <Check size={18} className="text-black" />
-            </div>
-            <span className="font-medium">{toastMessage}</span>
-            <button onClick={() => setShowToast(false)} className="ml-4 hover:text-primary transition-colors">
-              <X size={18} />
-            </button>
-          </motion.div>
-        )}
+
 
         <Routes>
           <Route path="/" element={<HomePage />} />

@@ -210,8 +210,8 @@ const AboutPage = () => {
                   <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
                 </div>
              </Link>
-             <a href="tel:4805550103" className="bg-white border border-soft-gray text-black px-10 py-5 rounded-full font-medium shadow-sm hover:shadow-md transition-all">
-                Call (480) 555-0103
+             <a href="tel:8259779460" className="bg-white border border-soft-gray text-black px-10 py-5 rounded-full font-medium shadow-sm hover:shadow-md transition-all">
+                (825) 977-9460
              </a>
           </div>
         </div>

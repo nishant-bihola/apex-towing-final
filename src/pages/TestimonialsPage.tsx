@@ -13,7 +13,7 @@ const TestimonialsPage = () => {
   const mainTestimonials = [
     {
       title: "Fast, reliable, and professional!",
-      text: "My car broke down on the highway at night, and AutoTowing arrived in less than 30 minutes. The driver was super friendly and made the whole process stress-free. Highly recommend!",
+      text: "My car broke down on the highway at night, and Apex Towing arrived in less than 30 minutes. The driver was super friendly and made the whole process stress-free. Highly recommend!",
       author: "Michael Drowes",
       image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800",
       bg: "bg-light-gray"
@@ -36,12 +36,12 @@ const TestimonialsPage = () => {
   ];
 
   const gridTestimonials = [
-    { name: "John Matthews", text: "I was stranded on the highway late at night, and Auto Towing came to my rescue. The team arrived quickly and was incredibly professional. They made a stressful situation much easier.", img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100" },
+    { name: "John Matthews", text: "I was stranded on the highway late at night, and Apex Towing came to my rescue. The team arrived quickly and was incredibly professional. They made a stressful situation much easier.", img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100" },
     { name: "Sarah Lewis", text: "Excellent service! My car broke down in the middle of a busy intersection, and they showed up within 20 minutes. The driver was friendly, helpful, and made sure I was safe.", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100" },
-    { name: "Michael Bradley", text: "Auto Towing went above and beyond! After an accident, they quickly transported my vehicle to the shop. They kept me informed the whole time and handled everything with care.", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100" },
-    { name: "Emily Roberts", text: "Locked myself out of my car in the parking lot, and Auto Towing was there in no time. Their locksmith service was quick and affordable, and I was back inside my car within minutes.", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100" },
-    { name: "James Thompson", text: "I needed a flatbed to tow my vintage car, and I couldn't be more impressed with Auto Towing's attention to detail. The driver took extra care to ensure the car was safely secured.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100" },
-    { name: "Laura Green", text: "I ran out of gas on the highway, and Auto Towing came to deliver fuel right to my location. The whole process was seamless, and their customer service was outstanding.", img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=100" }
+    { name: "Michael Bradley", text: "Apex Towing went above and beyond! After an accident, they quickly transported my vehicle to the shop. They kept me informed the whole time and handled everything with care.", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100" },
+    { name: "Emily Roberts", text: "Locked myself out of my car in the parking lot, and Apex Towing was there in no time. Their locksmith service was quick and affordable, and I was back inside my car within minutes.", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100" },
+    { name: "James Thompson", text: "I needed a flatbed to tow my vintage car, and I couldn't be more impressed with Apex Towing's attention to detail. The driver took extra care to ensure the car was safely secured.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100" },
+    { name: "Laura Green", text: "I ran out of gas on the highway, and Apex Towing came to deliver fuel right to my location. The whole process was seamless, and their customer service was outstanding.", img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=100" }
   ];
 
   return (
@@ -121,7 +121,7 @@ const TestimonialsPage = () => {
           <div className="text-center">
             <h2 className="text-5xl md:text-[60px] font-medium leading-[1.1] text-black tracking-tighter mb-10">
               <span className="text-dark-gray block">Need help?</span>
-              AutoTowing is just a call away!
+              Apex Towing is just a call away!
             </h2>
             <div className="flex justify-center">
               <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full font-medium shadow-xl hover:shadow-2xl transition-all duration-500 flex items-center gap-10 group">

@@ -29,7 +29,7 @@ const Hero = () => {
         <div className="max-w-[660px] mb-12">
           <motion.h1 
             {...fadeIn}
-            className="text-5xl md:text-6xl lg:text-[70px] leading-[1.1] font-medium mb-6 text-black"
+            className="text-4xl md:text-6xl lg:text-[70px] leading-[1.1] font-medium mb-6 text-black"
           >
             Fast, reliable, roadside assistance
           </motion.h1>
@@ -51,8 +51,8 @@ const Hero = () => {
                 <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
               </div>
             </Link>
-            <a href="tel:4805550103" className="bg-white border border-[#0000001a] text-black px-10 py-5 rounded-full font-medium hover:border-[#00000080] transition-all">
-              +(480) 555-0103
+            <a href="tel:8259779460" className="bg-white border border-[#0000001a] text-black px-6 py-4 md:px-10 md:py-5 rounded-full font-medium hover:border-[#00000080] transition-all">
+              (825) 977-9460
             </a>
           </motion.div>
         </div>
@@ -69,20 +69,20 @@ const Hero = () => {
             className="w-full h-[400px] md:h-[600px] object-cover hover:scale-105 transition-transform duration-1000"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 bg-primary p-4 md:p-6 flex flex-wrap justify-between items-center gap-4">
+          <div className="absolute bottom-0 left-0 right-0 bg-primary p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-nowrap lg:justify-between items-center gap-4 lg:gap-2">
             {[
               { id: 1, text: "Request a Tow" },
               { id: 2, text: "Get a Fast Response" },
               { id: 3, text: "Safe Vehicle Transport" },
               { id: 4, text: "Back on the Road" }
             ].map((step, idx, arr) => (
-              <div key={step.id} className="flex items-center gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="bg-black text-white px-4 py-1.5 rounded-60px text-[12px] font-bold">Step {step.id}</span>
-                  <span className="font-semibold text-black text-sm md:text-base">{step.text}</span>
+              <div key={step.id} className="flex items-center justify-between lg:justify-start gap-3 w-full lg:w-auto border-b border-black/10 lg:border-none pb-4 lg:pb-0 last:border-none">
+                <div className="flex items-center gap-3">
+                  <span className="bg-black text-white px-4 py-1.5 rounded-60px text-[12px] font-bold shrink-0">Step {step.id}</span>
+                  <span className="font-semibold text-black text-sm md:text-base leading-tight">{step.text}</span>
                 </div>
                 {idx < arr.length - 1 && (
-                  <ArrowRight size={18} className="hidden lg:block text-black/30" />
+                  <ArrowRight size={18} className="text-black/30 lg:block" />
                 )}
               </div>
             ))}
@@ -104,7 +104,7 @@ const About = () => {
           transition={{ duration: 0.8 }}
         >
           <motion.h2 
-            className="text-4xl md:text-6xl font-medium text-black leading-tight mb-12 max-w-4xl mx-auto"
+            className="text-3xl md:text-6xl font-medium text-black leading-tight mb-8 md:mb-12 max-w-4xl mx-auto"
           >
             We are committed to providing fast, reliable, and professional roadside assistance.
           </motion.h2>
@@ -378,8 +378,8 @@ const FAQ = () => {
     { q: "How fast can you get to my location?", a: "Our average response time is 30 minutes or less, depending on your location and traffic conditions. We operate 24/7, so help is always available." },
     { q: "How much does towing cost?", a: "Towing costs depend on factors like distance, vehicle type, and service requirements. Contact us for a free quote based on your specific needs." },
     { q: "Do you offer roadside assistance, or just towing?", a: "Yes! In addition to towing, we provide roadside assistance, including jump-starts, tire changes, fuel delivery, and lockout services." },
-    { q: "What areas do you serve?", a: "We offer towing and roadside assistance in [your service areas]. If you're unsure whether we cover your location, give us a call!" },
-    { q: "Is AutoTowing available 24/7?", a: "Yes! Our towing and roadside assistance services are available 24/7, ensuring help is always just a call away." }
+    { q: "What areas do you serve?", a: "We offer towing and roadside assistance in Edmonton, St. Albert, Sherwood Park, and surrounding areas. If you're unsure whether we cover your location, give us a call!" },
+    { q: "Is Apex Towing available 24/7?", a: "Yes! Our towing and roadside assistance services are available 24/7, ensuring help is always just a call away." }
   ];
 
   const [openIndex, setOpenIndex] = useState(0);
@@ -434,7 +434,7 @@ const FAQ = () => {
 };
 
 const FindUs = () => {
-  const address = "2401 W University Dr, Tempe, AZ 85281";
+  const address = "Edmonton, AB";
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
   const appleMapsUrl = `https://maps.apple.com/?q=${encodeURIComponent(address)}`;
 
@@ -497,7 +497,7 @@ const FindUs = () => {
             <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-2xl group-hover:bg-primary/30 transition-all duration-500"></div>
             <div className="relative rounded-20px overflow-hidden shadow-2xl border-2 border-soft-gray aspect-square lg:aspect-video w-full h-full bg-light-gray">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13319.46782414704!2d-111.979603!3d33.424193!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b0ed69542b6b5%3A0xe5f86641525ba70!2s2401%20W%20University%20Dr%2C%20Tempe%2C%20AZ%2085281!5e0!3m2!1sen!2sus!4v1714080000000!5m2!1sen!2sus" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d151818.825227!2d-113.633!3d53.546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a0224580deff23%3A0xc20f3a748c9038f!2sEdmonton%2C%20AB!5e0!3m2!1sen!2sca!4v1714080000000!5m2!1sen!2sca" 
                 className="w-full h-full grayscale-[0.2] contrast-[1.1] brightness-[0.95] hover:grayscale-0 transition-all duration-700" 
                 style={{ border: 0 }} 
                 allowFullScreen={false} 
@@ -521,7 +521,7 @@ const PrimaryCTA = () => {
             <div className="mb-10">
               <h2 className="text-4xl md:text-[60px] font-medium leading-[1.1] text-black tracking-tighter">
                 <span className="text-dark-gray block">Need help?</span>
-                AutoTowing is just a call away!
+                Apex Towing is just a call away!
               </h2>
             </div>
             <div className="flex flex-col items-start gap-10 md:gap-12">
