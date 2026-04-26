@@ -5,12 +5,14 @@ interface SEOProps {
   title?: string;
   description?: string;
   keywords?: string;
+  schema?: object;
 }
 
-const SEO = ({ title, description, keywords }: SEOProps) => {
+const SEO = ({ title, description, keywords, schema }: SEOProps) => {
   const location = useLocation();
 
   useEffect(() => {
+    // ... existing logic for title, description, keywords ...
     const baseTitle = "Apex Towing";
     const fullTitle = title ? `${title} | ${baseTitle}` : `${baseTitle} | 24/7 Towing & Roadside Assistance Edmonton`;
     document.title = fullTitle;
@@ -34,7 +36,18 @@ const SEO = ({ title, description, keywords }: SEOProps) => {
       }
       metaKeywords.setAttribute('content', keywords);
     }
-  }, [title, description, keywords, location]);
+
+    // Schema.org implementation
+    if (schema) {
+      let script = document.querySelector('script[type="application/ld+json"]');
+      if (!script) {
+        script = document.createElement('script');
+        script.setAttribute('type', 'application/ld+json');
+        document.head.appendChild(script);
+      }
+      script.textContent = JSON.stringify(schema);
+    }
+  }, [title, description, keywords, schema, location]);
 
   return null;
 };

@@ -570,6 +570,36 @@ export default function HomePage() {
         title="24/7 Emergency Towing & Roadside Assistance Edmonton"
         description="Need a tow in Edmonton? Apex Towing offers 24/7 emergency towing, flat tire changes, jump starts, and car lockout services. 30-minute response time guaranteed."
         keywords="towing edmonton, emergency towing edmonton, roadside assistance edmonton, flat tire change edmonton, car lockout service edmonton, jump start edmonton"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "TowingService",
+          "name": "Apex Towing",
+          "image": "https://apex-towing-final.vercel.app/home-hero.png",
+          "url": "https://apex-towing-final.vercel.app/",
+          "telephone": "+1-825-977-9460",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Edmonton Area",
+            "addressLocality": "Edmonton",
+            "addressRegion": "AB",
+            "addressCountry": "CA"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 53.5461,
+            "longitude": -113.4938
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          },
+          "areaServed": ["Edmonton", "St. Albert", "Sherwood Park"]
+        }}
       />
       <Hero />
       <About />
