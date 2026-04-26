@@ -15,6 +15,13 @@ app.use(express.json());
 const notion = new Client({ auth: process.env.VITE_NOTION_TOKEN });
 const NOTION_DATABASE_ID = process.env.VITE_NOTION_DATABASE_ID;
 
+console.log('--- SERVER STARTUP ---');
+console.log('Notion Token present:', !!process.env.VITE_NOTION_TOKEN);
+console.log('Notion Database ID present:', !!process.env.VITE_NOTION_DATABASE_ID);
+if (process.env.VITE_NOTION_DATABASE_ID) {
+  console.log('Notion Database ID:', process.env.VITE_NOTION_DATABASE_ID.substring(0, 4) + '...');
+}
+
 // Supabase Configuration
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.VITE_SUPABASE_ANON_KEY;
@@ -69,12 +76,13 @@ app.post('/api/booking', async (req, res) => {
 
     // 2. Notion Sync
     if (NOTION_DATABASE_ID && process.env.VITE_NOTION_TOKEN) {
+      console.log('Syncing lead to Notion database:', NOTION_DATABASE_ID);
       try {
-        await notion.pages.create({
+        const notionResponse = await notion.pages.create({
           parent: { database_id: NOTION_DATABASE_ID },
           properties: {
             Name: {
-              title: [{ text: { content: data.name || 'Unknown' } }]
+              title: [{ text: { content: data.name || 'Unknown Lead' } }]
             },
             Phone: {
               phone_number: data.phone || ''
@@ -93,11 +101,15 @@ app.post('/api/booking', async (req, res) => {
             }
           }
         });
+        console.log('Notion Sync Success:', notionResponse.id);
         results.notion = true;
       } catch (err) {
         console.error('Notion Sync Error:', err.message);
         results.notionError = err.message;
       }
+    } else {
+      console.warn('Skipping Notion sync: VITE_NOTION_TOKEN or VITE_NOTION_DATABASE_ID is missing.');
+      results.notionError = 'Missing Notion environment variables';
     }
 
     // 3. Notification to Owner
