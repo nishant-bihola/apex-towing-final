@@ -10,6 +10,7 @@ export default function RequestPage() {
     email: "", // New email field
     phone: "",
     service: "",
+    serviceDate: "", // New field for requested time
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,12 +27,13 @@ export default function RequestPage() {
         email: formData.email, // Passing email to API
         phone: formData.phone,
         serviceType: formData.service || "General Request",
+        requestedTime: formData.serviceDate, // Passing requested time
         message: formData.message,
         timestamp: new Date().toISOString(),
         source: "Website Form"
       });
       setIsSuccess(true);
-      setFormData({ name: "", email: "", phone: "", service: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", service: "", serviceDate: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -120,23 +122,16 @@ export default function RequestPage() {
                   />
                 </div>
                 <div className="relative">
-                  <select 
-                    name="service"
-                    value={formData.service}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-6 py-5 rounded-full border border-soft-gray focus:border-black focus:outline-none text-lg transition-colors appearance-none bg-white text-black"
-                  >
-                    <option value="" disabled>Select a service</option>
-                    {services.map(service => (
-                      <option key={service.id} value={service.title}>
-                        {service.title}
-                      </option>
-                    ))}
-                    <option value="Other">Other / Not Listed</option>
-                  </select>
-                  <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
-                    <ChevronDown size={20} className="text-paragraph-gray" />
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-bold text-black pl-6">Requested Service Date & Time</label>
+                    <input 
+                      type="datetime-local" 
+                      name="serviceDate"
+                      value={formData.serviceDate}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-6 py-5 rounded-full border border-soft-gray focus:border-black focus:outline-none text-lg transition-colors appearance-none bg-white text-black"
+                    />
                   </div>
                 </div>
                 <div className="relative">

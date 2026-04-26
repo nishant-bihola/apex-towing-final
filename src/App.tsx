@@ -42,7 +42,6 @@ import ServiceDetailPage from "./pages/ServiceDetailPage";
 import ScrollToTop from "./components/ScrollToTop";
 import StickyCallButton from "./components/StickyCallButton";
 import { services } from "./data/services";
-import { bookTowRequest } from "./api/bookingApi";
 
 // SEO Pages
 import TowingEdmonton from "./pages/seo/TowingEdmonton";
@@ -235,8 +234,6 @@ const Footer = () => {
 };
 
 export default function App() {
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -245,41 +242,7 @@ export default function App() {
       setLoading(false);
     }, 2500);
 
-    // Listen for custom events from the ElevenLabs widget
-    // Note: The widget emits events when tools are called or state changes
-    const handleMessage = async (event: MessageEvent) => {
-      if (event.data?.source === 'elevenlabs-convai' && event.data?.type === 'tool_call') {
-        const { tool, arguments: args } = event.data;
-        console.log('AI Tool Call:', tool, args);
-        
-        if (tool === 'book_tow') {
-          setToastMessage("AI is processing your tow booking...");
-          setShowToast(true);
-          
-          try {
-            const response = await bookTowRequest({
-              name: args?.name || "AI User",
-              phone: args?.phone || "Unknown",
-              serviceType: args?.service_type || "Towing",
-              location: args?.location || "Not provided",
-              timestamp: new Date().toISOString()
-            });
-            
-            if (response.success) {
-              setToastMessage("Booking confirmed! Notification sent to nishant15bihola@gmail.com.");
-              setTimeout(() => setShowToast(false), 5000);
-            }
-          } catch (error) {
-            console.error("AI Booking failed:", error);
-            setToastMessage("AI Booking failed to save.");
-          }
-        }
-      }
-    };
-
-    window.addEventListener('message', handleMessage);
     return () => {
-      window.removeEventListener('message', handleMessage);
       clearTimeout(timer);
     };
   }, []);
@@ -339,24 +302,6 @@ export default function App() {
 
       <div className={`font-sans antialiased bg-white min-h-screen relative transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <Navbar />
-        
-        {/* Success Notification for AI Booking */}
-        {showToast && (
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-32 right-8 z-[200] bg-black text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-primary/30"
-          >
-            <div className="bg-primary p-2 rounded-full">
-              <Check size={18} className="text-black" />
-            </div>
-            <span className="font-medium">{toastMessage}</span>
-            <button onClick={() => setShowToast(false)} className="ml-4 hover:text-primary transition-colors">
-              <X size={18} />
-            </button>
-          </motion.div>
-        )}
 
         <Routes>
           <Route path="/" element={<HomePage />} />
