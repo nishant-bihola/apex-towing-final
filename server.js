@@ -126,6 +126,182 @@ app.post('/api/booking', async (req, res) => {
   }
 });
 
+// ─── Subscribe Endpoint ───────────────────────────────────────────────────────
+app.post('/api/subscribe', async (req, res) => {
+  const { email } = req.body;
+  console.log('--- NEW SUBSCRIPTION ---', email);
+
+  if (!email) {
+    return res.status(400).json({ success: false, error: 'Email is required.' });
+  }
+
+  try {
+    // 1. Save to Supabase subscribers table (best-effort — won't fail the whole flow)
+    if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+      const { error } = await supabase
+        .from('subscribers')
+        .insert([{ email, subscribed_at: new Date().toISOString() }]);
+      if (error) console.warn('Supabase subscriber insert warning:', error.message);
+    }
+
+    if (!EMAIL_APP_PASSWORD) {
+      console.warn('No EMAIL_APP_PASSWORD — skipping emails.');
+      return res.json({ success: true, message: 'Subscribed (emails skipped in dev).' });
+    }
+
+    // 2. Notify owner
+    try {
+      await transporter.sendMail({
+        from: `"Apex Towing System" <${EMAIL_USER}>`,
+        to: OWNER_EMAIL,
+        subject: `New Newsletter Subscriber: ${email}`,
+        html: `
+          <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
+            <h3 style="color:#111;">📬 New Subscriber</h3>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><em>They have subscribed to Apex Towing news &amp; updates.</em></p>
+          </div>
+        `
+      });
+    } catch (err) {
+      console.error('Owner notification email failed:', err.message);
+    }
+
+    // 3. Confirmation email to subscriber
+    try {
+      await transporter.sendMail({
+        from: `"Apex Towing" <${EMAIL_USER}>`,
+        to: email,
+        subject: "You're subscribed to Apex Towing updates! 🚛",
+        html: `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          </head>
+          <body style="margin:0;padding:0;background:#f5f5f5;font-family:Arial,Helvetica,sans-serif;">
+            <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f5;padding:40px 20px;">
+              <tr>
+                <td align="center">
+                  <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+
+                    <!-- Header Banner -->
+                    <tr>
+                      <td style="background:#111111;padding:36px 40px;text-align:center;">
+                        <h1 style="margin:0;color:#FFD600;font-size:28px;letter-spacing:-0.5px;">APEX TOWING</h1>
+                        <p style="margin:8px 0 0;color:#ffffff;font-size:13px;opacity:0.7;letter-spacing:2px;text-transform:uppercase;">Fast · Reliable · 24/7</p>
+                      </td>
+                    </tr>
+
+                    <!-- Hero Message -->
+                    <tr>
+                      <td style="padding:48px 40px 32px;text-align:center;">
+                        <div style="width:64px;height:64px;background:#FFD600;border-radius:50%;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;font-size:28px;line-height:64px;">✓</div>
+                        <h2 style="margin:0 0 16px;color:#111111;font-size:26px;font-weight:700;">You're on the list!</h2>
+                        <p style="margin:0;color:#555555;font-size:16px;line-height:1.7;max-width:440px;margin:0 auto;">
+                          Welcome to the Apex Towing community. You'll now be the first to hear about our latest news, 
+                          service updates, seasonal tips, and exclusive offers.
+                        </p>
+                      </td>
+                    </tr>
+
+                    <!-- Divider -->
+                    <tr>
+                      <td style="padding:0 40px;">
+                        <hr style="border:none;border-top:1px solid #eeeeee;margin:0;">
+                      </td>
+                    </tr>
+
+                    <!-- What to Expect -->
+                    <tr>
+                      <td style="padding:32px 40px;">
+                        <h3 style="margin:0 0 20px;color:#111111;font-size:16px;text-transform:uppercase;letter-spacing:1.5px;">What to expect</h3>
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                          <tr>
+                            <td style="padding:12px 0;border-bottom:1px solid #f0f0f0;">
+                              <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                  <td style="width:36px;height:36px;background:#FFD600;border-radius:50%;text-align:center;line-height:36px;font-size:16px;">🚛</td>
+                                  <td style="padding-left:16px;color:#333333;font-size:14px;line-height:1.5;">
+                                    <strong>Service updates</strong> — new services &amp; fleet expansions
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding:12px 0;border-bottom:1px solid #f0f0f0;">
+                              <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                  <td style="width:36px;height:36px;background:#FFD600;border-radius:50%;text-align:center;line-height:36px;font-size:16px;">💡</td>
+                                  <td style="padding-left:16px;color:#333333;font-size:14px;line-height:1.5;">
+                                    <strong>Roadside tips</strong> — seasonal prep &amp; safety guides
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding:12px 0;">
+                              <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                  <td style="width:36px;height:36px;background:#FFD600;border-radius:50%;text-align:center;line-height:36px;font-size:16px;">🎁</td>
+                                  <td style="padding-left:16px;color:#333333;font-size:14px;line-height:1.5;">
+                                    <strong>Exclusive offers</strong> — subscriber-only discounts
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <!-- CTA Button -->
+                    <tr>
+                      <td style="padding:8px 40px 48px;text-align:center;">
+                        <a href="https://apex-towing-final.vercel.app" 
+                           style="display:inline-block;background:#FFD600;color:#111111;text-decoration:none;font-weight:700;font-size:15px;padding:16px 40px;border-radius:100px;letter-spacing:0.3px;">
+                          Visit Our Website →
+                        </a>
+                        <p style="margin:20px 0 0;color:#888888;font-size:13px;">
+                          Need help right now? Call us at <a href="tel:8259779460" style="color:#111111;font-weight:700;">(825) 977-9460</a>
+                        </p>
+                      </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                      <td style="background:#f8f8f8;padding:24px 40px;text-align:center;border-top:1px solid #eeeeee;">
+                        <p style="margin:0;color:#aaaaaa;font-size:12px;line-height:1.7;">
+                          You're receiving this because you subscribed at apex-towing-final.vercel.app<br>
+                          © 2026 Nishant Bihola · Apex Towing &amp; Recovery. All rights reserved.
+                        </p>
+                      </td>
+                    </tr>
+
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </body>
+          </html>
+        `
+      });
+      console.log('Subscription confirmation email sent to:', email);
+    } catch (err) {
+      console.error('Subscription confirmation email failed:', err.message);
+    }
+
+    res.json({ success: true, message: 'Subscribed and confirmation email sent.' });
+  } catch (error) {
+    console.error('Subscribe API Error:', error);
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+// ─────────────────────────────────────────────────────────────────────────────
+
 const PORT = 5000;
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {

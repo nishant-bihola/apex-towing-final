@@ -41,6 +41,7 @@ import ServicesPage from "./pages/ServicesPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import ScrollToTop from "./components/ScrollToTop";
 import { services } from "./data/services";
+import { subscribeEmail } from "./api/subscribeApi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -153,6 +154,26 @@ const Navbar = () => {
 // Actually I moved them all to HomePage.tsx and AboutPage.tsx
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [subLoading, setSubLoading] = useState(false);
+  const [subSuccess, setSubSuccess] = useState(false);
+  const [subError, setSubError] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    setSubLoading(true);
+    setSubError("");
+    const result = await subscribeEmail(email);
+    setSubLoading(false);
+    if (result.success) {
+      setSubSuccess(true);
+      setEmail("");
+    } else {
+      setSubError("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <footer className="pt-16 md:pt-20 pb-10 bg-white">
       <div className="max-w-[1230px] mx-auto px-4">
@@ -195,28 +216,48 @@ const Footer = () => {
             <h4 className="text-xl md:text-2xl font-medium text-black mb-6 md:mb-8 leading-tight">
               Subscribe to be in touch with latest news.
             </h4>
-            <form className="relative" onSubmit={(e) => {
-              e.preventDefault();
-              const form = e.target as HTMLFormElement;
-              const input = form.elements[0] as HTMLInputElement;
-              if (input.value) {
-                alert("Thank you for subscribing! You will receive our latest updates.");
-                input.value = '';
-              }
-            }}>
-              <input 
-                type="email" 
-                required
-                placeholder="Email address" 
-                className="w-full h-[64px] md:h-[72px] rounded-60px border border-soft-gray px-6 md:px-8 focus:border-paragraph-gray focus:outline-none focus:text-black transition-all bg-white text-sm md:text-base"
-              />
-              <button 
-                type="submit" 
-                className="absolute right-3 top-3 bottom-3 w-10 h-10 md:w-12 md:h-12 bg-primary rounded-full flex items-center justify-center hover:bg-black hover:text-primary transition-all duration-500 group"
+
+            {subSuccess ? (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="flex items-center gap-3 bg-black text-white px-6 py-4 rounded-full"
               >
-                <ArrowRight size={18} className="group-hover:-rotate-45 transition-transform" />
-              </button>
-            </form>
+                <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center shrink-0">
+                  <Check size={16} className="text-black" />
+                </div>
+                <p className="text-sm font-medium">You're subscribed! Check your inbox. 🎉</p>
+              </motion.div>
+            ) : (
+              <form className="relative" onSubmit={handleSubscribe}>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email address"
+                  disabled={subLoading}
+                  className="w-full h-[64px] md:h-[72px] rounded-60px border border-soft-gray px-6 md:px-8 focus:border-paragraph-gray focus:outline-none focus:text-black transition-all bg-white text-sm md:text-base disabled:opacity-60"
+                />
+                <button
+                  type="submit"
+                  disabled={subLoading}
+                  className="absolute right-3 top-3 bottom-3 w-10 h-10 md:w-12 md:h-12 bg-primary rounded-full flex items-center justify-center hover:bg-black hover:text-primary transition-all duration-500 group disabled:opacity-60"
+                >
+                  {subLoading ? (
+                    <svg className="animate-spin w-4 h-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                    </svg>
+                  ) : (
+                    <ArrowRight size={18} className="group-hover:-rotate-45 transition-transform" />
+                  )}
+                </button>
+                {subError && (
+                  <p className="mt-2 text-xs text-red-500 pl-4">{subError}</p>
+                )}
+              </form>
+            )}
           </div>
         </div>
 
@@ -235,6 +276,7 @@ const Footer = () => {
     </footer>
   );
 };
+
 
 export default function App() {
   const [loading, setLoading] = useState(true);
