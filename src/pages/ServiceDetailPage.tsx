@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { motion } from "motion/react";
-import { Check, ArrowRight, Truck, Timer, ShieldCheck, MapPin, Phone } from "lucide-react";
+import { Check, ArrowRight, Truck, Timer, ShieldCheck, MapPin } from "lucide-react";
 import { services } from "../data/services";
 
 const fadeIn = {
@@ -121,18 +121,9 @@ const ServiceDetailPage = () => {
                 ))}
               </ul>
 
-              <div className="mt-12 pt-10 border-t border-white/10 relative z-10 flex flex-col gap-5 w-full">
-                <a 
-                  href="tel:8259779460" 
-                  className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-lg hover:shadow-xl w-full"
-                >
-                  <span className="font-bold text-[10px] tracking-widest uppercase">Call Now: 825-977-9460</span>
-                  <div className="bg-black group-hover:bg-primary p-3 rounded-full transition-all duration-500">
-                    <Phone size={16} className="text-primary group-hover:text-black transition-colors duration-500" />
-                  </div>
-                </a>
-                <Link to="/request" className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-xl w-full">
-                  <span className="font-bold text-[10px] tracking-widest uppercase">Book this service</span>
+              <div className="mt-12 pt-10 border-t border-white/10 relative z-10">
+                <Link to="/request" className="bg-primary hover:bg-white text-black pl-8 pr-2 py-2 rounded-full inline-flex items-center gap-10 transition-all duration-500 group shadow-xl">
+                  <span className="font-bold text-sm tracking-widest uppercase">Book this service</span>
                   <div className="bg-black group-hover:bg-primary p-3 rounded-full group-hover:-rotate-45 transition-all duration-500">
                     <ArrowRight size={18} className="text-primary group-hover:text-black transition-colors" />
                   </div>

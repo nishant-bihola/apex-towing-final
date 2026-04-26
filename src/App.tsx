@@ -40,13 +40,8 @@ import TestimonialsPage from "./pages/TestimonialsPage";
 import ServicesPage from "./pages/ServicesPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import ScrollToTop from "./components/ScrollToTop";
-import StickyCallButton from "./components/StickyCallButton";
 import { services } from "./data/services";
-
-// SEO Pages
-import TowingEdmonton from "./pages/seo/TowingEdmonton";
-import RoadsideAssistanceEdmonton from "./pages/seo/RoadsideAssistanceEdmonton";
-import HeavyDutyTowingEdmonton from "./pages/seo/HeavyDutyTowingEdmonton";
+import { bookTowRequest } from "./api/bookingApi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -110,16 +105,11 @@ const Navbar = () => {
         {/* Right Action */}
         <div className="flex items-center gap-4">
           <a
-            href="tel:8259779460"
-            className="hidden md:flex items-center gap-3 bg-black text-white px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group hover:bg-primary hover:text-black"
+            href="tel:4805550103"
+            className="hidden md:flex items-center gap-3 bg-white border border-soft-gray px-6 py-3 rounded-full shadow-sm hover:shadow-md transition-all font-bold text-black text-sm"
           >
-            <div className="flex flex-col items-start leading-none">
-              <span className="text-[8px] font-bold opacity-60 uppercase tracking-widest mb-0.5 group-hover:text-black/60">24/7 CALL</span>
-              <span className="text-[13px] font-black">825-977-9460</span>
-            </div>
-            <div className="bg-primary p-2 rounded-full group-hover:bg-black transition-colors duration-300">
-              <Phone size={14} className="text-black group-hover:text-primary transition-colors" fill="currentColor" />
-            </div>
+            <Phone size={18} fill="currentColor" />
+            <span>(480) 555-0103</span>
           </a>
           <button className="lg:hidden" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -148,16 +138,11 @@ const Navbar = () => {
           <Link to="/about" className="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>ABOUT</Link>
           <Link to="/#find-us" className="text-sm font-bold tracking-widest uppercase hover:text-primary transition-colors" onClick={() => setIsOpen(false)}>FIND US</Link>
           <a
-            href="tel:8259779460"
-            className="flex items-center justify-between bg-black text-white px-8 py-5 rounded-full font-bold shadow-2xl group hover:bg-primary hover:text-black transition-all duration-300"
+            href="tel:4805550103"
+            className="flex items-center justify-center gap-2 bg-white border border-soft-gray px-8 py-3 rounded-full font-medium"
           >
-            <div className="flex flex-col items-start leading-none">
-              <span className="text-[10px] font-bold opacity-60 uppercase tracking-widest mb-1 group-hover:text-black/60">Emergency Dispatch</span>
-              <span className="text-xl font-black tracking-tight">825-977-9460</span>
-            </div>
-            <div className="bg-primary p-3 rounded-full group-hover:bg-black transition-colors">
-              <Phone size={20} className="text-black group-hover:text-primary transition-colors" fill="currentColor" />
-            </div>
+            <Phone size={16} fill="currentColor" />
+            <span>(480) 555-0103</span>
           </a>
         </div>
       )}
@@ -192,12 +177,8 @@ const Footer = () => {
               </div>
             </div>
             <div className="space-y-6 md:pl-10">
-              <div className="text-black font-medium uppercase text-sm tracking-widest">Contact & Social</div>
+              <div className="text-black font-medium uppercase text-sm tracking-widest">Socials</div>
               <div className="flex flex-col space-y-3">
-                <a href="tel:8259779460" className="flex items-center gap-2 hover:text-black font-bold text-lg">
-                  <Phone size={18} className="text-primary fill-current" /> 825-977-9460
-                </a>
-                <div className="h-px w-10 bg-soft-gray my-2"></div>
                 <a href="#" className="flex items-center gap-2 hover:text-black font-medium">
                   <Instagram size={18} /> Instagram
                 </a>
@@ -248,6 +229,8 @@ const Footer = () => {
 };
 
 export default function App() {
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -256,7 +239,41 @@ export default function App() {
       setLoading(false);
     }, 2500);
 
+    // Listen for custom events from the ElevenLabs widget
+    // Note: The widget emits events when tools are called or state changes
+    const handleMessage = async (event: MessageEvent) => {
+      if (event.data?.source === 'elevenlabs-convai' && event.data?.type === 'tool_call') {
+        const { tool, arguments: args } = event.data;
+        console.log('AI Tool Call:', tool, args);
+        
+        if (tool === 'book_tow') {
+          setToastMessage("AI is processing your tow booking...");
+          setShowToast(true);
+          
+          try {
+            const response = await bookTowRequest({
+              name: args?.name || "AI User",
+              phone: args?.phone || "Unknown",
+              serviceType: args?.service_type || "Towing",
+              location: args?.location || "Not provided",
+              timestamp: new Date().toISOString()
+            });
+            
+            if (response.success) {
+              setToastMessage("Booking confirmed! Notification sent to nishant15bihola@gmail.com.");
+              setTimeout(() => setShowToast(false), 5000);
+            }
+          } catch (error) {
+            console.error("AI Booking failed:", error);
+            setToastMessage("AI Booking failed to save.");
+          }
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
     return () => {
+      window.removeEventListener('message', handleMessage);
       clearTimeout(timer);
     };
   }, []);
@@ -316,6 +333,24 @@ export default function App() {
 
       <div className={`font-sans antialiased bg-white min-h-screen relative transition-opacity duration-1000 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <Navbar />
+        
+        {/* Success Notification for AI Booking */}
+        {showToast && (
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            className="fixed bottom-32 right-8 z-[200] bg-black text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-primary/30"
+          >
+            <div className="bg-primary p-2 rounded-full">
+              <Check size={18} className="text-black" />
+            </div>
+            <span className="font-medium">{toastMessage}</span>
+            <button onClick={() => setShowToast(false)} className="ml-4 hover:text-primary transition-colors">
+              <X size={18} />
+            </button>
+          </motion.div>
+        )}
 
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -324,14 +359,7 @@ export default function App() {
           <Route path="/testimonials" element={<TestimonialsPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/service/:serviceId" element={<ServiceDetailPage />} />
-          
-          {/* SEO Routes */}
-          <Route path="/towing-edmonton" element={<TowingEdmonton />} />
-          <Route path="/roadside-assistance-edmonton" element={<RoadsideAssistanceEdmonton />} />
-          <Route path="/heavy-duty-towing-edmonton" element={<HeavyDutyTowingEdmonton />} />
         </Routes>
-        
-        <StickyCallButton />
         <Footer />
       </div>
     </Router>

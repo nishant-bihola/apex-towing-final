@@ -65,27 +65,6 @@ app.post('/api/booking', async (req, res) => {
     // 2. Notification to Owner
     if (EMAIL_APP_PASSWORD) {
       try {
-        // Generate a basic ICS string for the calendar event
-        const requestedDate = data.requestedTime ? new Date(data.requestedTime) : new Date();
-        const startTime = requestedDate.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-        const endTime = new Date(requestedDate.getTime() + 60 * 60 * 1000).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-        
-        const icsContent = [
-          'BEGIN:VCALENDAR',
-          'VERSION:2.0',
-          'PRODID:-//Apex Towing//Service Booking//EN',
-          'BEGIN:VEVENT',
-          `UID:${Date.now()}@apextowing.ca`,
-          `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
-          `DTSTART:${startTime}`,
-          `DTEND:${endTime}`,
-          `SUMMARY:Towing: ${data.serviceType} - ${data.name}`,
-          `DESCRIPTION:Client: ${data.name}\\nPhone: ${data.phone}\\nService: ${data.serviceType}\\nMessage: ${data.message || 'N/A'}`,
-          'LOCATION:Edmonton Area',
-          'END:VEVENT',
-          'END:VCALENDAR'
-        ].join('\r\n');
-
         await transporter.sendMail({
           from: `"Apex Towing System" <${EMAIL_USER}>`,
           to: OWNER_EMAIL,
@@ -96,16 +75,10 @@ app.post('/api/booking', async (req, res) => {
             <p><strong>Email:</strong> ${data.email}</p>
             <p><strong>Phone:</strong> ${data.phone}</p>
             <p><strong>Service:</strong> ${data.serviceType}</p>
-            <p><strong>Requested Time:</strong> ${data.requestedTime || 'As soon as possible'}</p>
             <p><strong>Message:</strong> ${data.message || 'N/A'}</p>
             <p><strong>Source:</strong> ${data.source}</p>
-            <p><em>Check your Supabase dashboard for details. The calendar event is attached.</em></p>
-          `,
-          icalEvent: {
-            filename: 'service-request.ics',
-            method: 'REQUEST',
-            content: icsContent
-          }
+            <p><em>Check your Supabase dashboard for details.</em></p>
+          `
         });
         results.ownerEmail = true;
       } catch (err) {
@@ -123,13 +96,12 @@ app.post('/api/booking', async (req, res) => {
             subject: 'We received your towing request!',
             html: `
               <h3>Hello ${data.name},</h3>
-              <p>Thank you for reaching out to Apex Towing. We have received your request for <strong>${data.serviceType}</strong> scheduled for <strong>${data.requestedTime || 'ASAP'}</strong>.</p>
+              <p>Thank you for reaching out to Apex Towing. We have received your request for <strong>${data.serviceType}</strong>.</p>
               <p>One of our team members will contact you shortly at <strong>${data.phone}</strong>.</p>
               <br>
               <p><strong>Request Details:</strong></p>
               <ul>
                 <li>Service: ${data.serviceType}</li>
-                <li>Time: ${data.requestedTime || 'ASAP'}</li>
                 <li>Message: ${data.message || 'N/A'}</li>
               </ul>
               <br>

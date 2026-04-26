@@ -10,7 +10,6 @@ export interface BookingRequest {
   serviceType: string;
   message?: string;
   location?: string;
-  requestedTime?: string; // New field for calendar
   timestamp: string;
   source: 'Website Form' | 'AI Agent';
 }
@@ -39,7 +38,7 @@ export const submitServiceRequest = async (data: BookingRequest) => {
 
     return {
       success: true,
-      message: "Lead captured and email sent with calendar event.",
+      message: "Lead captured in Notion and email sent.",
       bookingId: `APEX-${Math.random().toString(36).substr(2, 9).toUpperCase()}`
     };
 
@@ -50,4 +49,11 @@ export const submitServiceRequest = async (data: BookingRequest) => {
       message: "Failed to connect to lead system. Please try calling us directly."
     };
   }
+};
+
+export const bookTowRequest = async (data: Omit<BookingRequest, 'source'>) => {
+  return await submitServiceRequest({
+    ...data,
+    source: 'AI Agent'
+  });
 };

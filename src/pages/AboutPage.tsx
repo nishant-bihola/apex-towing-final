@@ -10,8 +10,7 @@ import {
   History,
   Clock,
   MapPin,
-  Truck,
-  Phone
+  Truck
 } from "lucide-react";
 
 const fadeIn = {
@@ -115,9 +114,9 @@ const AboutPage = () => {
           <div className="grid md:grid-cols-3 gap-12 relative">
             <div className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-primary/20"></div>
             {[
-              { year: "2009", title: "The Beginning", desc: "Started with one truck and a passionate founder in Edmonton." },
-              { year: "2015", title: "Fleet Expansion", desc: "Expanded to 10 trucks and added heavy-duty towing capabilities." },
-              { year: "2024", title: "The New Peak", desc: "Became the #1 rated towing service in Edmonton with 20+ specialized vehicles." }
+              { year: "2014", title: "The Beginning", desc: "Started with one truck and a passionate founder in a small garage." },
+              { year: "2018", title: "Fleet Expansion", desc: "Expanded to 10 trucks and added heavy-duty towing capabilities." },
+              { year: "2024", title: "The New Peak", desc: "Became the #1 rated towing service in the region with 20+ specialized vehicles." }
             ].map((milestone, i) => (
               <motion.div 
                 key={i}
@@ -204,23 +203,17 @@ const AboutPage = () => {
       <section className="py-20 md:py-32">
         <div className="max-w-[1230px] mx-auto px-4 text-center">
           <h2 className="text-4xl md:text-5xl font-medium text-black mb-10">Ready to get back on the road?</h2>
-            <div className="flex flex-col gap-5 items-center justify-center">
-              <a 
-                href="tel:8259779460" 
-                className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-lg hover:shadow-xl w-full max-w-[340px]"
-              >
-                <span className="font-medium uppercase tracking-widest text-[10px]">Call now: 825-977-9460</span>
-                <div className="bg-primary group-hover:bg-black p-3 rounded-full transition-all duration-500">
-                  <Phone size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
-                </div>
-              </a>
-             <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full flex items-center justify-between transition-all duration-500 group shadow-lg hover:shadow-xl w-full max-w-[340px]">
-                <span className="font-medium uppercase tracking-widest text-[10px]">Request Service</span>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+             <Link to="/request" className="bg-black hover:bg-primary text-white hover:text-black pl-8 pr-2 py-2 rounded-full font-medium shadow-xl hover:shadow-2xl transition-all duration-500 flex items-center gap-10 group">
+                <span className="font-medium">Request Service</span>
                 <div className="bg-primary group-hover:bg-black p-3 rounded-full group-hover:rotate-[-45deg] transition-all duration-500">
                   <ArrowRight size={18} className="text-black group-hover:text-primary transition-colors duration-500" />
                 </div>
              </Link>
-            </div>
+             <a href="tel:4805550103" className="bg-white border border-soft-gray text-black px-10 py-5 rounded-full font-medium shadow-sm hover:shadow-md transition-all">
+                Call (480) 555-0103
+             </a>
+          </div>
         </div>
       </section>
     </div>

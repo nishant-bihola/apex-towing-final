@@ -1,7 +1,6 @@
 import { motion } from "motion/react";
-import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2, ChevronDown } from "lucide-react";
 import { useState } from "react";
-import DateTimePicker from "../components/DateTimePicker";
 import { submitServiceRequest } from "../api/bookingApi";
 import { services } from "../data/services";
 
@@ -11,7 +10,6 @@ export default function RequestPage() {
     email: "", // New email field
     phone: "",
     service: "",
-    serviceDate: "", // New field for requested time
     message: ""
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,13 +26,12 @@ export default function RequestPage() {
         email: formData.email, // Passing email to API
         phone: formData.phone,
         serviceType: formData.service || "General Request",
-        requestedTime: formData.serviceDate, // Passing requested time
         message: formData.message,
         timestamp: new Date().toISOString(),
         source: "Website Form"
       });
       setIsSuccess(true);
-      setFormData({ name: "", email: "", phone: "", service: "", serviceDate: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", service: "", message: "" });
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -49,15 +46,8 @@ export default function RequestPage() {
     }));
   };
 
-  const handleDateChange = (value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      serviceDate: value
-    }));
-  };
-
   return (
-    <div className="pt-20 md:pt-24 min-h-screen bg-light-gray flex items-center justify-center p-4">
+    <div className="pt-24 min-h-screen bg-light-gray flex items-center justify-center p-4">
       <div className="max-w-[1230px] w-full bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row p-4 md:p-10 gap-10 md:gap-20">
         {/* Left Image */}
         <div className="md:w-1/2 rounded-xl overflow-hidden">
@@ -91,7 +81,7 @@ export default function RequestPage() {
             </motion.div>
           ) : (
             <>
-              <h1 className="text-4xl md:text-6xl font-medium text-black mb-8 md:mb-12 tracking-tight leading-tight">
+              <h1 className="text-5xl md:text-6xl font-medium text-black mb-12 tracking-tight leading-tight">
                 Request towing assistance
               </h1>
 
@@ -130,10 +120,24 @@ export default function RequestPage() {
                   />
                 </div>
                 <div className="relative">
-                  <DateTimePicker 
-                    value={formData.serviceDate}
-                    onChange={handleDateChange}
-                  />
+                  <select 
+                    name="service"
+                    value={formData.service}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-6 py-5 rounded-full border border-soft-gray focus:border-black focus:outline-none text-lg transition-colors appearance-none bg-white text-black"
+                  >
+                    <option value="" disabled>Select a service</option>
+                    {services.map(service => (
+                      <option key={service.id} value={service.title}>
+                        {service.title}
+                      </option>
+                    ))}
+                    <option value="Other">Other / Not Listed</option>
+                  </select>
+                  <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <ChevronDown size={20} className="text-paragraph-gray" />
+                  </div>
                 </div>
                 <div className="relative">
                   <textarea 
@@ -149,10 +153,10 @@ export default function RequestPage() {
                 <div className="pt-4">
                   <button 
                     disabled={isSubmitting}
-                    className="bg-black hover:bg-primary text-white hover:text-black pl-10 pr-2 py-2 rounded-full flex items-center gap-14 transition-all duration-500 group w-full sm:w-fit shadow-xl hover:shadow-2xl disabled:opacity-50"
+                    className="bg-black hover:bg-primary text-white hover:text-black pl-10 pr-2 py-2 rounded-full flex items-center gap-14 transition-all duration-500 group w-fit shadow-xl hover:shadow-2xl disabled:opacity-50"
                   >
-                    <span className="font-medium text-lg italic">
-                      {isSubmitting ? "Sending..." : "Request a Tow Now"}
+                    <span className="font-medium text-lg">
+                      {isSubmitting ? "Sending..." : "Send message"}
                     </span>
                     <div className="bg-primary group-hover:bg-black p-4 rounded-full group-hover:rotate-[-45deg] transition-all duration-500">
                       {isSubmitting ? (
