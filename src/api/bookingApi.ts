@@ -14,7 +14,9 @@ export interface BookingRequest {
   source: 'Website Form' | 'AI Agent';
 }
 
-const PROXY_URL = "http://localhost:5000/api/booking";
+const PROXY_URL = import.meta.env.PROD 
+  ? '/api/booking' 
+  : 'http://localhost:5000/api/booking';
 
 export const submitServiceRequest = async (data: BookingRequest) => {
   console.log(`--- SENDING REQUEST TO PROXY FROM ${data.source} ---`);

@@ -100,6 +100,10 @@ app.post('/api/booking', async (req, res) => {
 });
 
 const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Proxy server running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Proxy server running on http://localhost:${PORT}`);
+  });
+}
+
+export default app;
