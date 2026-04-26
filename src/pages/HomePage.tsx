@@ -66,8 +66,8 @@ const Hero = () => {
           <img loading="lazy" 
             src="/home-hero.png" 
             alt="Towing Service Truck" 
-            className="w-full h-[260px] sm:h-[380px] md:h-[580px] object-cover object-center hover:scale-105 transition-transform duration-1000"
-            style={{ objectPosition: 'center 30%' }}
+            className="w-full h-[260px] sm:h-[380px] md:h-[580px] object-cover hover:scale-105 transition-transform duration-1000"
+            style={{ objectPosition: 'center 65%' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           {/* Step bar */}
