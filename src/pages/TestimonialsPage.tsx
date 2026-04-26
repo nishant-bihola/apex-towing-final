@@ -15,14 +15,14 @@ const TestimonialsPage = () => {
       title: "Fast, reliable, and professional!",
       text: "My car broke down on the highway at night, and Apex Towing arrived in less than 30 minutes. The driver was super friendly and made the whole process stress-free. Highly recommend!",
       author: "Michael Drowes",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=800",
+      image: "/images/testimonials/main1.png",
       bg: "bg-light-gray"
     },
     {
       title: "Excellent towing service!",
       text: "I called the company, and within 30 minutes, a powerful tow truck arrived. They pulled my car out without any damage and handled everything very carefully. Thank you for the quick help!",
       author: "Jessica Holland",
-      image: "https://images.unsplash.com/photo-1562564055-71e051d33c19?auto=format&fit=crop&q=80&w=800",
+      image: "/images/testimonials/main2.png",
       bg: "bg-primary/20",
       reverse: true
     },
@@ -30,18 +30,18 @@ const TestimonialsPage = () => {
       title: "Trustworthy and affordable",
       text: "I needed my SUV transported to another city, and this company offered the best price. It's great to know there's a reliable service like this when you need it!",
       author: "Jason Mitchel",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=800",
+      image: "/images/testimonials/main3.png",
       bg: "bg-primary/10"
     }
   ];
 
   const gridTestimonials = [
-    { name: "John Matthews", text: "I was stranded on the highway late at night, and Apex Towing came to my rescue. The team arrived quickly and was incredibly professional. They made a stressful situation much easier.", img: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=100" },
-    { name: "Sarah Lewis", text: "Excellent service! My car broke down in the middle of a busy intersection, and they showed up within 20 minutes. The driver was friendly, helpful, and made sure I was safe.", img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100" },
-    { name: "Michael Bradley", text: "Apex Towing went above and beyond! After an accident, they quickly transported my vehicle to the shop. They kept me informed the whole time and handled everything with care.", img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100" },
-    { name: "Emily Roberts", text: "Locked myself out of my car in the parking lot, and Apex Towing was there in no time. Their locksmith service was quick and affordable, and I was back inside my car within minutes.", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100" },
-    { name: "James Thompson", text: "I needed a flatbed to tow my vintage car, and I couldn't be more impressed with Apex Towing's attention to detail. The driver took extra care to ensure the car was safely secured.", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100" },
-    { name: "Laura Green", text: "I ran out of gas on the highway, and Apex Towing came to deliver fuel right to my location. The whole process was seamless, and their customer service was outstanding.", img: "https://images.unsplash.com/photo-1554151228-14d9def656e4?auto=format&fit=crop&q=80&w=100" }
+    { name: "John Matthews", text: "I was stranded on the highway late at night, and Apex Towing came to my rescue. The team arrived quickly and was incredibly professional. They made a stressful situation much easier.", img: "/images/testimonials/avatar1.png" },
+    { name: "Sarah Lewis", text: "Excellent service! My car broke down in the middle of a busy intersection, and they showed up within 20 minutes. The driver was friendly, helpful, and made sure I was safe.", img: "/images/testimonials/avatar2.png" },
+    { name: "Michael Bradley", text: "Apex Towing went above and beyond! After an accident, they quickly transported my vehicle to the shop. They kept me informed the whole time and handled everything with care.", img: "/images/testimonials/avatar3.png" },
+    { name: "Emily Roberts", text: "Locked myself out of my car in the parking lot, and Apex Towing was there in no time. Their locksmith service was quick and affordable, and I was back inside my car within minutes.", img: "/images/testimonials/avatar4.png" },
+    { name: "James Thompson", text: "I needed a flatbed to tow my vintage car, and I couldn't be more impressed with Apex Towing's attention to detail. The driver took extra care to ensure the car was safely secured.", img: "/images/testimonials/avatar5.png" },
+    { name: "Laura Green", text: "I ran out of gas on the highway, and Apex Towing came to deliver fuel right to my location. The whole process was seamless, and their customer service was outstanding.", img: "/images/testimonials/avatar6.png" }
   ];
 
   return (
