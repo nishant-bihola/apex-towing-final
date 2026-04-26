@@ -66,7 +66,8 @@ const Hero = () => {
           <img loading="lazy" 
             src="/home-hero.png" 
             alt="Towing Service Truck" 
-            className="w-full h-[260px] sm:h-[400px] md:h-[600px] object-cover hover:scale-105 transition-transform duration-1000"
+            className="w-full h-[260px] sm:h-[380px] md:h-[580px] object-cover object-center hover:scale-105 transition-transform duration-1000"
+            style={{ objectPosition: 'center 30%' }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           {/* Step bar */}
@@ -77,15 +78,13 @@ const Hero = () => {
                 { id: 2, text: "Get a Fast Response" },
                 { id: 3, text: "Safe Vehicle Transport" },
                 { id: 4, text: "Back on the Road" }
-              ].map((step, idx, arr) => (
-                <div key={step.id} className="flex items-center justify-between gap-2 py-2 px-2 border-b border-black/10 sm:border-b lg:border-none last:border-none lg:w-auto">
+              ].map((step) => (
+                <div key={step.id} className="flex items-center justify-between gap-2 py-2 px-2 border-b border-black/10 lg:border-none last:border-none lg:w-auto">
                   <div className="flex items-center gap-2 min-w-0">
                     <span className="bg-black text-white px-2.5 py-1 rounded-60px text-[10px] md:text-[12px] font-bold shrink-0">Step {step.id}</span>
                     <span className="font-semibold text-black text-xs md:text-sm leading-tight truncate">{step.text}</span>
                   </div>
-                  {idx < arr.length - 1 && (
-                    <ArrowRight size={14} className="text-black/40 shrink-0" />
-                  )}
+                  <ArrowRight size={14} className="text-black/40 shrink-0" />
                 </div>
               ))}
             </div>
